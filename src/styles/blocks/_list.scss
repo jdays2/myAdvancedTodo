@@ -1,0 +1,14 @@
+.list {
+	display: flex;
+	width: 100%;
+	justify-content: space-between;
+  align-items: flex-start;
+
+  &__item {
+    min-width: 30rem;
+    display: flex;
+    flex-direction: column;
+    padding: 2rem 0;
+    gap: 2rem;
+  }
+}
