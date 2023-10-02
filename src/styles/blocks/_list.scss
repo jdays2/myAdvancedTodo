@@ -1,14 +1,36 @@
 .list {
 	display: flex;
 	width: 100%;
-	justify-content: space-between;
-  align-items: flex-start;
+	height: 72vh;
+	align-items: flex-start;
+	flex-direction: column;
+	gap: 2rem;
+	flex-wrap: wrap;
+	position: relative;
+	overflow-x: auto;
+	margin-bottom: 3rem;
+  padding: 1rem;
 
-  &__item {
-    min-width: 30rem;
-    display: flex;
-    flex-direction: column;
-    padding: 2rem 0;
-    gap: 2rem;
-  }
+	&::-webkit-scrollbar {
+		height: 6px; 
+    cursor: pointer;
+	}
+
+	&::-webkit-scrollbar:hover {
+		height: 8px; 
+    cursor: pointer;
+	}
+
+	&::-webkit-scrollbar-track {
+		background-color: #f0f0f0;
+	}
+
+	&::-webkit-scrollbar-thumb {
+		background-color: $blue; 
+		border-radius: 5px; 
+	}
+
+	&::-webkit-scrollbar-thumb:hover {
+		background-color: #5b9de9;
+	}
 }

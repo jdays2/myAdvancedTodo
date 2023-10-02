@@ -1,3 +1,24 @@
 .header {
-  background-color: red;
+  border-bottom: 1px solid #f0f0f0;
+  font-family: 'AROneSans';
+  font-size: 30px;
+  padding: 2rem 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  &__logo {
+    display: flex;
+    align-items: center;
+    color: $blue;
+    gap: 1rem;
+    cursor: pointer;
+    width: -webkit-fit-content;
+    width: -moz-fit-content;
+    width: fit-content;
+
+    &:hover {
+      color: $dark
+    }
+  }
 }
