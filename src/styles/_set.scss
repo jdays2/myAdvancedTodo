@@ -4,7 +4,7 @@
     box-sizing: border-box;
 }
 html {
-    font-family: "Euclid Circular A"; // шрифт по умолчанию по сайту
+    font-family: 'AROneSans', sans-serif;
     font-size: 0.5208335vw; // на разрешении 1920 0.520835vw === 10px
     font-style: normal;
     font-weight: normal;
@@ -22,7 +22,8 @@ body {
     margin: 0;
     padding: 0;
     color: #262525; // цвет по умолчанию текста по сайту
-    background-color: #fff
+    background-color: #fff;
+    height: 100vh;
 }
 
 input,

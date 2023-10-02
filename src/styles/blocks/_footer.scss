@@ -1,0 +1,38 @@
+.footer {
+	display: flex;
+	justify-content: space-between;
+	padding: 2rem 0;
+  align-items: center;
+  
+	&__socials {
+		display: flex;
+		gap: 1.5rem;
+		&-link {
+			svg {
+				width: 4rem;
+				height: 4rem;
+				color: $blue;
+				&:hover {
+					color: $dark;
+				}
+			}
+		}
+	}
+  &__copyright {
+    font-size: 14px;
+    display: flex;
+    text-transform: uppercase;
+    gap: 1rem;
+    line-height: 2rem;
+
+
+    svg {
+      width: 2rem;
+      height: 2rem;
+    }
+  }
+  &__author {
+    font-size: 15px;
+    color: $blue;
+  }
+}
