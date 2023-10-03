@@ -13,24 +13,10 @@ import {
 
 const { TextArea } = Input;
 
-import dayjs from 'dayjs';
-import customParseFormat from 'dayjs/plugin/customParseFormat';
-const dateFormat = 'YYYY-MM-DD';
-dayjs.extend(customParseFormat);
-
-export default function EditCard({
-	open,
-	onClose,
-	title,
-	body,
-	type,
-	created,
-	deadline,
-	priority,
-}) {
+export default function CreateCard({ open, onClose }) {
 	return (
 		<Drawer
-			title="Edit TODO CARD"
+			title="Create New TODO"
 			placement="right"
 			onClose={onClose}
 			open={open}
@@ -58,7 +44,7 @@ export default function EditCard({
 									message: 'Required field',
 								},
 							]}>
-							<Input defaultValue={title} />
+							<Input />
 						</Form.Item>
 					</Col>
 					<Col span={12}>
@@ -71,9 +57,7 @@ export default function EditCard({
 									message: 'Required field',
 								},
 							]}>
-							<Select
-								placeholder="Please choose the type"
-								defaultValue={priority}>
+							<Select placeholder="Please choose the type">
 								<Option value="critical">Critical</Option>
 								<Option value="urgent">Urgent</Option>
 								<Option value="standard">Standard</Option>
@@ -92,9 +76,7 @@ export default function EditCard({
 									message: 'Please choose the type',
 								},
 							]}>
-							<Select
-								placeholder="Please choose the type"
-								defaultValue={type}>
+							<Select placeholder="Please choose the type">
 								<Option value="Personal">Personal</Option>
 								<Option value="Work">Work</Option>
 							</Select>
@@ -112,7 +94,6 @@ export default function EditCard({
 								},
 							]}>
 							<DatePicker
-								defaultValue={dayjs({ deadline }, dateFormat)}
 								style={{
 									width: '100%',
 								}}
@@ -133,7 +114,6 @@ export default function EditCard({
 							]}>
 							<TextArea
 								rows={6}
-								defaultValue={body}
 								placeholder="maxLength is 250"
 								maxLength={250}
 							/>

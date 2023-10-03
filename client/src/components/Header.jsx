@@ -3,6 +3,7 @@ import { Button } from 'antd';
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import EditCard from './EditCard';
+import CreateCard from './createCard';
 
 const fetchz = () => {
 	const data = {
@@ -57,7 +58,7 @@ export default function Header() {
 
 				<Button onClick={openHandler}>Add new todo</Button>
 			</div>
-			<EditCard
+			<CreateCard
 				open={open}
 				onClose={onClose}
 			/>

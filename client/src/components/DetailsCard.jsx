@@ -5,11 +5,19 @@ import { selectItems } from './TodoCard';
 
 export default function DetailsCard({
 	selectHandler,
+	active,
 	selectActiveClass,
 	closeCardHandler,
 	openCard,
 	showEdit,
+	title,
+	body,
+	type,
+	created,
+	deadline,
+	priority,
 }) {
+	console.log(active)
 	return (
 		<Drawer
 			title="TODO CARD"
@@ -32,14 +40,14 @@ export default function DetailsCard({
 					span={24}
 					className="card-detail__col">
 					<strong className="card-detail__col-title">Title:</strong>
-					<span className="card-detail__col-vlaue">Title</span>
+					<span className="card-detail__col-vlaue">{title}</span>
 				</Col>
 				<Col
 					span={24}
 					className="card-detail__col">
 					<strong className="card-detail__col-title">Status:</strong>
 					<Select
-						defaultValue="active"
+						value={active}
 						className={`card__select ${selectActiveClass}`}
 						bordered={false}
 						onChange={selectHandler}
@@ -50,36 +58,31 @@ export default function DetailsCard({
 					span={24}
 					className="card-detail__col">
 					<strong className="card-detail__col-title">Priority:</strong>
-					<span className="card-detail__col-vlaue">Standart</span>
+					<span className="card-detail__col-vlaue">{priority}</span>
 				</Col>
 				<Col
 					span={24}
 					className="card-detail__col">
 					<strong className="card-detail__col-title">Type:</strong>
-					<span className="card-detail__col-vlaue">Personal</span>
+					<span className="card-detail__col-vlaue">{type}</span>
 				</Col>
 				<Col
 					span={24}
 					className="card-detail__col">
 					<strong className="card-detail__col-title">Created:</strong>
-					<span className="card-detail__col-vlaue">2021-05-14</span>
+					<span className="card-detail__col-vlaue">{created}</span>
 				</Col>
 				<Col
 					span={24}
 					className="card-detail__col">
 					<strong className="card-detail__col-title">Deadline:</strong>
-					<span className="card-detail__col-vlaue">2022-02-24</span>
+					<span className="card-detail__col-vlaue">{deadline}</span>
 				</Col>
 				<Col
 					span={24}
 					className="card-detail__col">
 					<strong className="card-detail__col-title">Body:</strong>
-					<span className="card-detail__col-vlaue">
-						Lorem ipsum, dolor sit amet consectetur adipisicing elit. Modi ipsam
-						quaerat maiores quisquam dignissimos ad explicabo omnis voluptas
-						inventore deleniti atque unde nostrum error hic nesciunt excepturi
-						consectetur, repellat eum!
-					</span>
+					<span className="card-detail__col-vlaue">{body}</span>
 				</Col>
 			</Row>
 		</Drawer>

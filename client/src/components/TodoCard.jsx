@@ -17,9 +17,9 @@ export const selectItems = [
 	},
 ];
 
-export default function TodoCard() {
+export default function TodoCard({ card }) {
 	const [open, setOpen] = useState(false);
-	const [active, setActive] = useState(true);
+	const [active, setActive] = useState(card.status);
 	const [deleted, setDeleted] = useState(false);
 	const [openCard, setOpenCard] = useState(false);
 
@@ -50,9 +50,9 @@ export default function TodoCard() {
 
 	const selectHandler = (value) => {
 		if (value === 'active') {
-			setActive(true);
+			setActive('active');
 		} else {
-			setActive(false);
+			setActive('resolved');
 		}
 	};
 
@@ -60,9 +60,9 @@ export default function TodoCard() {
 		setDeleted(true);
 	};
 
-	const selectActiveClass = active
-		? 'card__select--active'
-		: 'card__select--resolved';
+	const selectActiveClass =
+		active !== 'resolved' ? 'card__select--active' : 'card__select--resolved';
+	console.log(selectActiveClass);
 
 	const cardDeleted = deleted ? 'card--deleted' : '';
 
@@ -87,7 +87,7 @@ export default function TodoCard() {
 					className="card__content"
 					onClick={openCardHandler}>
 					<div className="card__head">
-						<p className="card__date">01.10.23 03:24</p>
+						<p className="card__date">{card.created}</p>
 						{deleted ? null : (
 							<Dropdown
 								menu={{ items }}
@@ -98,12 +98,13 @@ export default function TodoCard() {
 							</Dropdown>
 						)}
 					</div>
-					<p className="card__title">Hello</p>
+					<p className="card__title">{card.title}</p>
 					{deleted ? (
 						<span className="card__status">DELETED</span>
 					) : (
 						<Select
-							defaultValue="active"
+							defaultValue={card.status}
+							value={active}
 							className={`card__select ${selectActiveClass}`}
 							bordered={false}
 							onChange={selectHandler}
@@ -115,10 +116,13 @@ export default function TodoCard() {
 
 			<EditCard
 				open={open}
+				{...card}
 				onClose={onClose}
 			/>
 
 			<DetailsCard
+				{...card}
+				active={active}
 				selectActiveClass={selectActiveClass}
 				selectHandler={selectHandler}
 				closeCardHandler={closeCardHandler}
