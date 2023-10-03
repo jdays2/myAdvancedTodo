@@ -1,31 +1,22 @@
 import React from 'react';
-import ActiveCards from '../components/ActiveCards';
-import DeletedCards from '../components/DeletedCards';
-import ResolvedCards from '../components/ResolvedCards';
-import AllCards from '../components/AllCards';
-
 import { Tabs } from 'antd';
-
+import { Link, Outlet } from 'react-router-dom';
 const items = [
 	{
 		key: '1',
-		label: 'All',
-		children: <AllCards />,
+		label: <Link to="/">All</Link>,
 	},
 	{
 		key: '2',
-		label: 'Active',
-		children: <ActiveCards />,
+		label: <Link to="active">Active</Link>,
 	},
 	{
 		key: '3',
-		label: 'Resolved',
-		children: <ResolvedCards />,
+		label: <Link to="resolved">Resolved</Link>,
 	},
 	{
 		key: '4',
-		label: 'Deleted',
-		children: <DeletedCards />,
+		label: <Link to="deleted">Deleted</Link>,
 	},
 ];
 
@@ -38,6 +29,9 @@ export default function Home() {
 					items={items}
 					indicatorSize={(origin) => origin - 16}
 				/>
+				<div className="list">
+					<Outlet />
+				</div>
 			</div>
 		</section>
 	);

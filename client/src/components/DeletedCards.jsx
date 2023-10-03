@@ -2,10 +2,19 @@ import React from 'react';
 import TodoCard from './TodoCard';
 import { Empty } from 'antd';
 
-export default function DeletedCards() {
+function DeletedCards() {
 	return (
-		<div className="list">
+		<>
 			<Empty className='empty'/>
-		</div>
+		</>
 	);
+}
+
+const loader = () => {
+	return null
+};
+
+export const deletedCardsRout = {
+	loader,
+	DeletedCards
 }

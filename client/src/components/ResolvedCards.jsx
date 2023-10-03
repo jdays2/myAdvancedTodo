@@ -1,12 +1,21 @@
 import React from 'react';
 import TodoCard from './TodoCard';
 
-export default function ResolvedCards() {
+function ResolvedCards() {
 	return (
-		<div className="list">
+		<>
 		<TodoCard />
 		<TodoCard />
 		<TodoCard />
-	</div>
+	</>
 	);
+}
+
+const loader = () => {
+	return null
+};
+
+export const resolvedCardsRout = {
+	loader,
+	ResolvedCards
 }

@@ -1,37 +1,46 @@
 import React from 'react';
 import TodoCard from './TodoCard';
 
-export default function AllCards() {
+function AllCards() {
 	return (
-		<div className="list">
+		<>
 			<TodoCard />
 			<TodoCard />
 			<TodoCard />
-      <TodoCard />
 			<TodoCard />
 			<TodoCard />
-      <TodoCard />
 			<TodoCard />
 			<TodoCard />
-      <TodoCard />
-			<TodoCard />
-      <TodoCard />
 			<TodoCard />
 			<TodoCard />
-      <TodoCard />
 			<TodoCard />
 			<TodoCard />
-      <TodoCard />
 			<TodoCard />
 			<TodoCard />
-      <TodoCard />
 			<TodoCard />
 			<TodoCard />
-      <TodoCard />
-			<TodoCard />
-      <TodoCard />
 			<TodoCard />
 			<TodoCard />
-		</div>
+			<TodoCard />
+			<TodoCard />
+			<TodoCard />
+			<TodoCard />
+			<TodoCard />
+			<TodoCard />
+			<TodoCard />
+			<TodoCard />
+			<TodoCard />
+			<TodoCard />
+			<TodoCard />
+		</>
 	);
 }
+
+const loader = () => {
+	return null
+};
+
+export const allCardsRout = {
+	loader,
+	AllCards,
+};

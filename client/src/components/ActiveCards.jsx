@@ -1,15 +1,24 @@
 import React from 'react';
 import TodoCard from './TodoCard';
 
-export default function ActiveCards() {
+function ActiveCards() {
 	return (
-		<div className="list ">
+		<>
 			<TodoCard />
 			<TodoCard />
 			<TodoCard />
 			<TodoCard />
 			<TodoCard />
 			<TodoCard />
-		</div>
+		</>
 	);
 }
+
+const loader = () => {
+	return null;
+};
+
+export const activeCardsRout = {
+	loader,
+	ActiveCards,
+};
