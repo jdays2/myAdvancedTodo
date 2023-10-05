@@ -2,6 +2,13 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import router from './router.jsx';
 import { RouterProvider } from 'react-router-dom';
-import './styles/styles.scss'
+import { Provider } from 'react-redux';
 
-ReactDOM.createRoot(document.getElementById('root')).render(<RouterProvider router={router} />);
+import { store } from './redux/store.js';
+import './styles/styles.scss';
+
+ReactDOM.createRoot(document.getElementById('root')).render(
+	<Provider store={store}>
+		<RouterProvider router={router} />
+	</Provider>,
+);

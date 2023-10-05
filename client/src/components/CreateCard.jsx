@@ -11,32 +11,40 @@ import {
 	Button,
 } from 'antd';
 
+import { addTodos } from '../redux/slices/todosSlice';
+import { useDispatch } from 'react-redux';
+import { getDate } from '../utils/getDate';
+
+import dayjs from 'dayjs';
+import customParseFormat from 'dayjs/plugin/customParseFormat';
+const dateFormat = 'YYYY-MM-DD';
+dayjs.extend(customParseFormat);
+
 const { TextArea } = Input;
 
 export default function CreateCard({ open, onClose }) {
+	const dispatch = useDispatch();
+
+	const handleFormSubmit = (value) => {
+		value.created = getDate();
+		value.deadline = value.deadline.format(dateFormat);
+		value.status = 'active';
+		dispatch(addTodos(value));
+		onClose();
+	};
+
 	return (
 		<Drawer
 			title="Create New TODO"
 			placement="right"
-			onClose={onClose}
-			open={open}
-			extra={
-				<Space>
-					<Button onClick={onClose}>Cancel</Button>
-					<Button
-						onClick={onClose}
-						type="primary">
-						Submit
-					</Button>
-				</Space>
-			}>
+			open={open}>
 			<Form
 				layout="vertical"
-				hideRequiredMark>
+				onFinish={handleFormSubmit}>
 				<Row gutter={16}>
 					<Col span={12}>
 						<Form.Item
-							name="name"
+							name="title"
 							label="Title"
 							rules={[
 								{
@@ -119,6 +127,15 @@ export default function CreateCard({ open, onClose }) {
 							/>
 						</Form.Item>
 					</Col>
+
+					<Space>
+						<Button onClick={onClose}>Cancel</Button>
+						<Button
+							type="primary"
+							htmlType="submit">
+							Submit
+						</Button>
+					</Space>
 				</Row>
 			</Form>
 		</Drawer>

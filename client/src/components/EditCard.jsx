@@ -15,42 +15,38 @@ const { TextArea } = Input;
 
 import dayjs from 'dayjs';
 import customParseFormat from 'dayjs/plugin/customParseFormat';
+import { editList } from '../redux/slices/todosSlice';
+import { useDispatch } from 'react-redux';
 const dateFormat = 'YYYY-MM-DD';
 dayjs.extend(customParseFormat);
 
-export default function EditCard({
-	open,
-	onClose,
-	title,
-	body,
-	type,
-	created,
-	deadline,
-	priority,
-}) {
+export default function EditCard({ open, onClose, card }) {
+	const dispatch = useDispatch();
+
+	const handleFormSubmit = (value) => {
+		value.deadline = value.deadline.format(dateFormat);
+
+		dispatch(editList({ id: card._id, data: value }));
+		onClose()
+	};
+
 	return (
 		<Drawer
 			title="Edit TODO CARD"
 			placement="right"
 			onClose={onClose}
-			open={open}
-			extra={
-				<Space>
-					<Button onClick={onClose}>Cancel</Button>
-					<Button
-						onClick={onClose}
-						type="primary">
-						Submit
-					</Button>
-				</Space>
-			}>
+			open={open}>
 			<Form
 				layout="vertical"
-				hideRequiredMark>
+				initialValues={{
+					...card,
+					deadline: dayjs(card.deadline, { format: dateFormat }),
+				}}
+				onFinish={handleFormSubmit}>
 				<Row gutter={16}>
 					<Col span={12}>
 						<Form.Item
-							name="name"
+							name="title"
 							label="Title"
 							rules={[
 								{
@@ -58,7 +54,7 @@ export default function EditCard({
 									message: 'Required field',
 								},
 							]}>
-							<Input defaultValue={title} />
+							<Input />
 						</Form.Item>
 					</Col>
 					<Col span={12}>
@@ -71,9 +67,7 @@ export default function EditCard({
 									message: 'Required field',
 								},
 							]}>
-							<Select
-								placeholder="Please choose the type"
-								defaultValue={priority}>
+							<Select placeholder="Please choose the type">
 								<Option value="critical">Critical</Option>
 								<Option value="urgent">Urgent</Option>
 								<Option value="standard">Standard</Option>
@@ -92,9 +86,7 @@ export default function EditCard({
 									message: 'Please choose the type',
 								},
 							]}>
-							<Select
-								placeholder="Please choose the type"
-								defaultValue={type}>
+							<Select placeholder="Please choose the type">
 								<Option value="Personal">Personal</Option>
 								<Option value="Work">Work</Option>
 							</Select>
@@ -112,7 +104,6 @@ export default function EditCard({
 								},
 							]}>
 							<DatePicker
-								defaultValue={dayjs({ deadline }, dateFormat)}
 								style={{
 									width: '100%',
 								}}
@@ -133,12 +124,19 @@ export default function EditCard({
 							]}>
 							<TextArea
 								rows={6}
-								defaultValue={body}
 								placeholder="maxLength is 250"
 								maxLength={250}
 							/>
 						</Form.Item>
 					</Col>
+					<Space>
+						<Button onClick={onClose}>Cancel</Button>
+						<Button
+							type="primary"
+							htmlType="submit">
+							Submit
+						</Button>
+					</Space>
 				</Row>
 			</Form>
 		</Drawer>

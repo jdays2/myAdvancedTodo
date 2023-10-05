@@ -3,10 +3,9 @@ import React from 'react';
 import { createBrowserRouter } from 'react-router-dom';
 import Home from './pages/Home';
 import NavBars from './components/NavBars';
-import { allCardsRout } from './components/AllCards';
-import { activeCardsRout } from './components/ActiveCards';
-import { resolvedCardsRout } from './components/ResolvedCards';
-import { deletedCardsRout } from './components/DeletedCards';
+import AllCards from './components/AllCards';
+import ActiveCards from './components/ActiveCards';
+import ResolvedCards from './components/ResolvedCards';
 
 const router = createBrowserRouter([
 	{
@@ -16,10 +15,9 @@ const router = createBrowserRouter([
 				path: '/',
 				element: <Home />,
 				children: [
-					{ index: true, ...allCardsRout },
-					{ path: 'active', ...activeCardsRout },
-					{ path: 'resolved', ...resolvedCardsRout },
-					{ path: 'deleted', ...deletedCardsRout },
+					{ index: true, element: <AllCards />},
+					{ path: 'active', element: <ActiveCards /> },
+					{ path: 'resolved', element: <ResolvedCards /> },
 				],
 			},
 		],

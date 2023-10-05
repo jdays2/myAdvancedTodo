@@ -1,16 +1,26 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import TodoCard from './TodoCard';
-import { getTodos } from '../api/getTodos';
-import { useLoaderData } from 'react-router-dom';
-import { Empty } from 'antd';
+import { Empty, Spin } from 'antd';
+import { useDispatch, useSelector } from 'react-redux';
+import { getList } from '../redux/slices/todosSlice';
 
-function AllCards() {
-	const cards = useLoaderData();
+export default function AllCards() {
+	const { list, isLoading } = useSelector((state) => state.todos);
 
+	const dispatch = useDispatch();
+
+	useEffect(()=>{
+		dispatch(getList());
+	}, [])
 	return (
 		<>
-			{cards ? (
-				cards.map((card) => {
+			<Spin
+				className="spinner"
+				spinning={isLoading}
+				size="large"
+			/>
+			{list ? (
+				list.map((card) => {
 					return (
 						<TodoCard
 							key={card._id}
@@ -24,14 +34,3 @@ function AllCards() {
 		</>
 	);
 }
-
-const loader = async ({ request: { signal } }) => {
-	const cards = await getTodos({ signal });
-	console.log(cards)
-	return cards;
-};
-
-export const allCardsRout = {
-	loader,
-	element: <AllCards />,
-};

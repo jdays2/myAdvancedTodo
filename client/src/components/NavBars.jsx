@@ -5,10 +5,10 @@ import Header from './Header';
 
 export default function NavBars() {
 	return (
-		<>
+		<div className="container">
 			<Header />
 			<Outlet />
 			<Footer />
-		</>
+		</div>
 	);
 }

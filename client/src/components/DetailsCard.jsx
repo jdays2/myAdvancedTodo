@@ -5,19 +5,18 @@ import { selectItems } from './TodoCard';
 
 export default function DetailsCard({
 	selectHandler,
-	active,
 	selectActiveClass,
 	closeCardHandler,
 	openCard,
 	showEdit,
 	title,
+	status,
 	body,
 	type,
 	created,
 	deadline,
 	priority,
 }) {
-	console.log(active)
 	return (
 		<Drawer
 			title="TODO CARD"
@@ -47,7 +46,7 @@ export default function DetailsCard({
 					className="card-detail__col">
 					<strong className="card-detail__col-title">Status:</strong>
 					<Select
-						value={active}
+						value={status}
 						className={`card__select ${selectActiveClass}`}
 						bordered={false}
 						onChange={selectHandler}

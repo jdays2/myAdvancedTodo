@@ -13,26 +13,24 @@ const items = [
 	{
 		key: '3',
 		label: <Link to="resolved">Resolved</Link>,
-	},
-	{
-		key: '4',
-		label: <Link to="deleted">Deleted</Link>,
-	},
+	}
 ];
 
 export default function Home() {
 	return (
-		<section className="container">
-			<div className="">
-				<Tabs
-					defaultActiveKey="1"
-					items={items}
-					indicatorSize={(origin) => origin - 16}
-				/>
-				<div className="list">
-					<Outlet />
+		<>
+			<section className="container">
+				<div className="">
+					<Tabs
+						defaultActiveKey="1"
+						items={items}
+						indicatorSize={(origin) => origin - 16}
+					/>
+					<div className="list">
+						<Outlet />
+					</div>
 				</div>
-			</div>
-		</section>
+			</section>
+		</>
 	);
 }

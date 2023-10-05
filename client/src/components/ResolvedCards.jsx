@@ -1,21 +1,33 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import TodoCard from './TodoCard';
+import { useDispatch, useSelector } from 'react-redux';
+import { getList, selectedByStatus } from '../redux/slices/todosSlice';
+import { Spin } from 'antd';
 
-function ResolvedCards() {
+export default function ResolvedCards() {
+	const { resolved } = useSelector(selectedByStatus);
+	const { isLoading } = useSelector((state) => state.todos);
+
+	const dispatch = useDispatch();
+
+	useEffect(() => {
+		dispatch(getList());
+	}, []);
 	return (
 		<>
-		<TodoCard />
-		<TodoCard />
-		<TodoCard />
-	</>
+			<Spin
+				className="spinner"
+				spinning={isLoading}
+				size="large"
+			/>
+			{resolved.map((card) => {
+				return (
+					<TodoCard
+						key={card._id}
+						card={card}
+					/>
+				);
+			})}
+		</>
 	);
-}
-
-const loader = () => {
-	return null
-};
-
-export const resolvedCardsRout = {
-	loader,
-	ResolvedCards
 }

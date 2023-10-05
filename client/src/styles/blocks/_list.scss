@@ -9,16 +9,29 @@
 	position: relative;
 	overflow-x: auto;
 	margin-bottom: 3rem;
-  padding: 1rem;
-
+	padding: 1rem;
+	&::after {
+		content: '';
+		position: -webkit-sticky;
+		position: sticky;
+		top: 0;
+		right: -1rem;
+		width: 10%;
+		height: 100%;
+		background: linear-gradient(
+			to left,
+			white,
+			transparent
+		); /* Градиент от прозрачного к белому */
+	}
 	&::-webkit-scrollbar {
-		height: 6px; 
-    cursor: pointer;
+		height: 6px;
+		cursor: pointer;
 	}
 
 	&::-webkit-scrollbar:hover {
-		height: 8px; 
-    cursor: pointer;
+		height: 8px;
+		cursor: pointer;
 	}
 
 	&::-webkit-scrollbar-track {
@@ -26,8 +39,8 @@
 	}
 
 	&::-webkit-scrollbar-thumb {
-		background-color: $blue; 
-		border-radius: 5px; 
+		background-color: $blue;
+		border-radius: 5px;
 	}
 
 	&::-webkit-scrollbar-thumb:hover {

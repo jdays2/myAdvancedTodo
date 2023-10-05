@@ -1,5 +1,5 @@
 import { baseApi } from './base';
 
-export const postTodos = (options) => {
+export const addTodo = (options) => {
 	return baseApi.post('createTodo', options).then((res) => res.data);
 };

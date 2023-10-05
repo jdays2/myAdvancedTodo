@@ -1,5 +1,5 @@
 .card {
-	width: 30rem;
+	width: 26rem;
 	background: #fff;
 	border: 0.1rem solid #0000001a;
 	border-radius: 0.8rem;
@@ -8,14 +8,19 @@
 	padding: 1.2rem;
 	border-bottom: 'none';
 	font-family: 'AROneSans';
-	
+
+	&:hover {
+		.icon {
+			opacity: 1;
+		}
+	}
+
 	.ant-card-body {
 		padding: 0;
 	}
 
 	&--deleted {
 		cursor: default;
-		
 
 		.card__title {
 			text-decoration: line-through;
@@ -38,6 +43,12 @@
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
+
+		&-box {
+			display: flex;
+			align-items: center;
+			gap: 7px;
+		}
 	}
 
 	&__status {
@@ -58,6 +69,21 @@
 		&:hover {
 			color: $blue;
 			box-shadow: 0 0.3rem 0.9rem #0000000a, 0 0.5rem 2.6rem #0000000a;
+		}
+	}
+
+	&__info {
+		width: 100%;
+		display: flex;
+		align-items: flex-end;
+		justify-content: space-between;
+	}
+
+	&__more-link {
+		&:hover {
+			span {
+				text-decoration: underline;
+			}
 		}
 	}
 
