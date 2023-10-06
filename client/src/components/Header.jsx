@@ -2,7 +2,7 @@ import { SmileFilled } from '@ant-design/icons';
 import { Button } from 'antd';
 import React, {  useState } from 'react';
 import { Link } from 'react-router-dom';
-import CreateCard from './createCard';
+import CreateCard from './CreateCard';
 
 export default function Header() {
 	const [open, setOpen] = useState(false);
