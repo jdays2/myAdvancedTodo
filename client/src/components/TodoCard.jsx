@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import { Card, Select, Dropdown, Button } from 'antd';
 
 import { MoreOutlined } from '@ant-design/icons';
-import DetailsCard from './detailsCard';
+import DetailsCard from './DetailsCard';
 import { useDispatch } from 'react-redux';
 import { deleteTodos, editList } from '../redux/slices/todosSlice';
 import { PriorityIcon } from './PriorityIcon';
