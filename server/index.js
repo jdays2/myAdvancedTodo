@@ -3,6 +3,8 @@ const app = express();
 const mongoose = require('mongoose');
 const cors = require('cors');
 
+const port = 3001;
+
 mongoose.connect(
 	'mongodb+srv://markgorsharik:A4efZ66BrMuT6Gno@todo.eufq04p.mongodb.net/Stud?retryWrites=true&w=majority',
 );
@@ -73,6 +75,6 @@ app.delete('/deleteTodo/:id', async (req, res) => {
 	}
 });
 
-app.listen(3001, () => {
+app.listen(port, () => {
 	console.log('Сервер запущен на порту 3001');
 });
