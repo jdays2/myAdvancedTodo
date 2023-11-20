@@ -34,7 +34,7 @@ const initialState = {
 	isLoading: false,
 	isCreatingDone: '',
 	isEditingDone: '',
-	activeTodo: '',
+	activeTodoId: {},
 };
 
 export const todosSlice = createSlice({
@@ -46,6 +46,10 @@ export const todosSlice = createSlice({
 		},
 		resetEditing: (state) => {
 			state.isEditingDone = '';
+		},
+		setActiveTodoId: (state, action) => {
+			state.activeTodoId = action.payload;
+			console.log(`todo ID was changed: ${state.activeTodoId}`)
 		},
 	},
 
@@ -108,6 +112,7 @@ export const selectedByStatus = createSelector(
 	},
 );
 
-export const { resetCreating, resetEditing } = todosSlice.actions;
+export const { resetCreating, resetEditing, setActiveTodoId } =
+	todosSlice.actions;
 
 export default todosSlice.reducer;

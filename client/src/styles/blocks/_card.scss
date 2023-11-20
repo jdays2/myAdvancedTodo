@@ -4,7 +4,7 @@
 	border: 0.1rem solid #0000001a;
 	border-radius: 0.8rem;
 	color: #262525;
-	cursor: pointer;
+	cursor: default;
 	padding: 1.2rem;
 	border-bottom: 'none';
 	font-family: 'AROneSans';
@@ -14,6 +14,7 @@
 			opacity: 1;
 		}
 	}
+
 
 	.ant-card-body {
 		padding: 0;
@@ -80,6 +81,7 @@
 	}
 
 	&__more-link {
+		
 		&:hover {
 			span {
 				text-decoration: underline;

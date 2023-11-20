@@ -9,5 +9,5 @@ export const BackBtn = () => {
 		navigate(-1);
 	};
 
-	return <Button onClick={goBackHandler}>Back</Button>;
+	return <Button className='back-btn' onClick={goBackHandler}>Back</Button>;
 };

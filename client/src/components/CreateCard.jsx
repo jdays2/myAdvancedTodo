@@ -37,6 +37,7 @@ export default function CreateCard({ open, onClose }) {
 		<Drawer
 			title="Create New TODO"
 			placement="right"
+			onClose={onClose}
 			open={open}>
 			<Form
 				layout="vertical"

@@ -9,6 +9,8 @@ import { useDispatch } from 'react-redux';
 import { deleteTodos, editList } from '../redux/slices/todosSlice';
 import { PriorityIcon } from './PriorityIcon';
 import { TypeIcon } from './TypeIcon';
+import { setActiveTodoId } from '../redux/slices/todosSlice';
+import { toggleModal } from '../redux/slices/modalsSlice';
 
 export const selectItems = [
 	{
@@ -23,8 +25,6 @@ export const selectItems = [
 
 export default function TodoCard({ card }) {
 	const dispatch = useDispatch();
-	const [open, setOpen] = useState(false);
-	const [openCard, setOpenCard] = useState(false);
 
 	const deleted = card.deleted;
 
@@ -38,20 +38,12 @@ export default function TodoCard({ card }) {
 		dispatch(editList({ id: card._id, data: updatedCard }));
 	};
 
-	const openCardHandler = () => {
-		setOpenCard(true);
+	const setModalActive = (strModal, strStatus) => {
+		dispatch(toggleModal({ modal: strModal, status: strStatus }));
 	};
 
-	const closeCardHandler = () => {
-		setOpenCard(false);
-	};
-
-	const showEdit = () => {
-		setOpen(true);
-	};
-
-	const onClose = () => {
-		setOpen(false);
+	const setActiveTodoIdHandler = (id) => {
+		dispatch(setActiveTodoId(id));
 	};
 
 	const selectActiveClass =
@@ -64,7 +56,16 @@ export default function TodoCard({ card }) {
 	const items = [
 		{
 			key: '1',
-			label: <button onClick={showEdit}>Edit</button>,
+			label: (
+				<button
+					onClick={() => {
+						setActiveTodoIdHandler(card._id)
+						setModalActive('edit', 'true');
+						
+					}}>
+					Edit
+				</button>
+			),
 		},
 		{
 			key: '2',
@@ -112,28 +113,16 @@ export default function TodoCard({ card }) {
 							<Button
 								type="link"
 								className="card__more-link"
-								onClick={openCardHandler}>
+								onClick={() => {
+									setActiveTodoIdHandler(card._id);
+									setModalActive('details', 'true');
+								}}>
 								<span>More</span>
 							</Button>
 						</div>
 					)}
 				</div>
 			</Card>
-
-			<EditCard
-				open={open}
-				card={card}
-				onClose={onClose}
-			/>
-
-			<DetailsCard
-				{...card}
-				selectActiveClass={selectActiveClass}
-				selectHandler={editStatus}
-				closeCardHandler={closeCardHandler}
-				openCard={openCard}
-				showEdit={showEdit}
-			/>
 		</>
 	);
 }
