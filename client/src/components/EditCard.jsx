@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
 	Space,
 	Form,
@@ -16,19 +16,35 @@ const { TextArea } = Input;
 import dayjs from 'dayjs';
 import customParseFormat from 'dayjs/plugin/customParseFormat';
 import { editList } from '../redux/slices/todosSlice';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 const dateFormat = 'YYYY-MM-DD';
 dayjs.extend(customParseFormat);
 
-export default function EditCard({ open, onClose, card }) {
+export default function EditCard({ activeId, open, onClose }) {
 	const dispatch = useDispatch();
+
+	const card = useSelector((state) =>
+		state.todos.list.find((item) => item._id === activeId),
+	);
 
 	const handleFormSubmit = (value) => {
 		value.deadline = value.deadline.format(dateFormat);
 
 		dispatch(editList({ id: card._id, data: value }));
-		onClose()
+		onClose();
 	};
+
+	const [form] = Form.useForm();
+
+	useEffect(() => {
+		form.setFieldsValue({
+			title: card.title,
+			priority: card.priority,
+			type: card.type,
+			deadline: dayjs(card.deadline, { format: dateFormat }),
+			body: card.body,
+		});
+	}, [form, card]);
 
 	return (
 		<Drawer
@@ -37,11 +53,8 @@ export default function EditCard({ open, onClose, card }) {
 			onClose={onClose}
 			open={open}>
 			<Form
+				form={form}
 				layout="vertical"
-				initialValues={{
-					...card,
-					deadline: dayjs(card.deadline, { format: dateFormat }),
-				}}
 				onFinish={handleFormSubmit}>
 				<Row gutter={16}>
 					<Col span={12}>
