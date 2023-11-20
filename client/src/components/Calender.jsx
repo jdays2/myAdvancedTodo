@@ -30,6 +30,8 @@ export const Calender = () => {
 		eventsMap[date].push({ ...todo });
 	});
 
+  console.log(list)
+
   const setActiveTodoIdHandler = (id) => {
 		dispatch(setActiveTodoId(id));
 	};
