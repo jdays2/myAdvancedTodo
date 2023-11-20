@@ -22,7 +22,7 @@ export const Calender = () => {
 		if (todo.status !== 'active') {
 			return;
 		}
-		const date = todo.created.split('T')[0];
+		const date = todo.deadline.split('T')[0];
 		if (!eventsMap[date]) {
 			eventsMap[date] = [];
 		}
