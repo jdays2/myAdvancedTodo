@@ -1,6 +1,8 @@
 .calendar {
-  min-height: 72vh;
-  height: 100%;
+	height: -webkit-fit-content;
+	height: -moz-fit-content;
+	height: fit-content;
+
 	&__list {
 		display: flex;
 		flex-direction: column;
@@ -57,10 +59,18 @@
 
 .ant-picker-cell {
 	cursor: default !important;
+
+	@media (hover: hover) {
+		&:hover {
+			.icon {
+				opacity: 1;
+			}
+		}
+	}
 }
 .ant-picker-calendar-date-content {
 	padding-bottom: 6px !important;
 }
 .ant-picker-calendar-mode-switch {
-  display: none !important;
+	display: none !important;
 }

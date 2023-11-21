@@ -7,25 +7,15 @@
 	gap: 2rem;
 	flex-wrap: wrap;
 	position: relative;
-	overflow-x: auto;
+	overflow-x: hidden;
+	overflow-y: auto;
 	margin-bottom: 3rem;
-	padding: 1rem;
-	&::after {
-		content: '';
-		position: -webkit-sticky;
-		position: sticky;
-		top: 0;
-		right: -1rem;
-		width: 10%;
-		height: 100%;
-		background: linear-gradient(
-			to left,
-			white,
-			transparent
-		); /* Градиент от прозрачного к белому */
-	}
+	margin-top: 10px;
+	padding: 30px;
+	
 	&::-webkit-scrollbar {
 		height: 6px;
+		width: 6px;
 		cursor: pointer;
 	}
 
