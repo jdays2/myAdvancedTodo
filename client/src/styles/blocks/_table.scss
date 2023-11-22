@@ -14,6 +14,12 @@
 		}
 	}
 
+	&__status-tag, &__deadline-tag {
+		width: 70px;
+		text-align: center;
+
+	}
+
 	&__status-checker {
 		visibility: hidden;
 	}

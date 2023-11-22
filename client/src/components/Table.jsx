@@ -21,11 +21,15 @@ import { setActiveTodoId } from '../redux/slices/todosSlice';
 import { toggleModal } from '../redux/slices/modalsSlice';
 import { RiQuestionFill } from 'react-icons/ri';
 import { calculateDeadlineStatus } from '../utils/calculateDeadlineStatus';
+import { TableStatus } from './tableRenders/TableStatus';
+import { TableType } from './tableRenders/TableType';
+import { TablePriority } from './tableRenders/TablePriority';
+import { TableEdit } from './tableRenders/TableEdit';
+import { TableDeadline } from './tableRenders/TableDeadline';
 const { Column } = Table;
 const { Title } = Typography;
 
 export const TableBlock = () => {
-	const dispatch = useDispatch();
 	const [sortBy] = useOutletContext();
 	const { isLoading, sortedList } = useSortedList(sortBy);
 
@@ -33,11 +37,6 @@ export const TableBlock = () => {
 
 	const handleTableChange = (pagination, filters, sorter) => {
 		setFilters(filters);
-	};
-
-	const setModalActive = (id, strModal, strStatus) => {
-		dispatch(setActiveTodoId(id));
-		dispatch(toggleModal({ modal: strModal, status: strStatus }));
 	};
 
 	return (
@@ -91,69 +90,32 @@ export const TableBlock = () => {
 								(value !== 'overdue' && deadlineChecker !== true)
 							);
 						}}
-						render={(_, record) => {
-							const { created, deadline } = record;
-							const deadlineChecker = calculateDeadlineStatus(deadline);
-							const isOkey = deadlineChecker === true ? 'red' : 'orange';
-							return (
-								<Flex
-									align="center"
-									diraction="column">
-									<Tag
-										color={isOkey}
-										key={deadline}>
-										{deadlineChecker === true
-											? 'EXPIRED'
-											: deadlineChecker.toUpperCase()}
-									</Tag>
-									<Popover
-										placement="right"
-										content={
-											<Flex vertical="false">
-												<Col
-													span={24}
-													className="card-detail__col">
-													<strong className="card-detail__col-title">
-														Created:
-													</strong>
-													<span className="card-detail__col-vlaue">
-														{created}
-													</span>
-												</Col>
-												<Col
-													span={24}
-													className="card-detail__col">
-													<strong className="card-detail__col-title">
-														Deadline:
-													</strong>
-													<span className="card-detail__col-vlaue">
-														{deadline}
-													</span>
-												</Col>
-											</Flex>
-										}
-										arrow={false}>
-										<FaInfoCircle className="table__info" />
-									</Popover>
-								</Flex>
-							);
+						sorter={(a, b) => {
+							const deadlineCheckerA = calculateDeadlineStatus(a.deadline);
+							const deadlineCheckerB = calculateDeadlineStatus(b.deadline);
+
+							if (deadlineCheckerA.isExpired && !deadlineCheckerB.isExpired) {
+								// If a is expired but b is not, place a at the bottom
+								return 1;
+							} else if (
+								!deadlineCheckerA.isExpired &&
+								deadlineCheckerB.isExpired
+							) {
+								// If b is expired but a is not, place b at the bottom
+								return -1;
+							} else {
+								// If both are expired or not expired, sort based on the deadline
+								return deadlineCheckerA.timeDiff - deadlineCheckerB.timeDiff;
+							}
 						}}
+						render={(_, record) => <TableDeadline record={record} />}
 					/>
 					<Column
 						width="100px"
 						title="Status"
 						dataIndex="status"
 						key="status"
-						render={(status) => {
-							const color = status === 'resolved' ? 'green' : 'geekblue';
-							return (
-								<Tag
-									color={color}
-									key={status}>
-									{status.toUpperCase()}
-								</Tag>
-							);
-						}}
+						render={(status) => <TableStatus status={status} />}
 					/>
 					<Column
 						width="460px"
@@ -170,16 +132,7 @@ export const TableBlock = () => {
 							{ text: 'Work', value: 'Work' },
 						]}
 						onFilter={(value, record) => record.type === value}
-						render={(type, record) => {
-							return (
-								<Flex
-									align="center"
-									gap={6}>
-									<TypeIcon status={type} />
-									<p>{type}</p>
-								</Flex>
-							);
-						}}
+						render={(type) => <TableType type={type} />}
 					/>
 					<Column
 						title="Priority"
@@ -191,29 +144,14 @@ export const TableBlock = () => {
 							{ text: 'standard', value: 'standard' },
 						]}
 						onFilter={(value, record) => record.priority === value}
-						render={(priority) => (
-							<Flex
-								align="center"
-								gap={6}>
-								<PriorityIcon status={priority} />
-								<p>{priority}</p>
-							</Flex>
-						)}
+						render={(priority) => <TablePriority priority={priority} />}
 					/>
 					<Column
 						width="60px"
 						title="Action"
 						key="action"
 						dataIndex="_id"
-						render={(id, record) => (
-							<Space
-								size="middle"
-								onClick={() => {
-									setModalActive(id, 'edit', 'true');
-								}}>
-								<Button type="default">Edit</Button>
-							</Space>
-						)}
+						render={(id) => <TableEdit id={id} />}
 					/>
 				</Table>
 			)}

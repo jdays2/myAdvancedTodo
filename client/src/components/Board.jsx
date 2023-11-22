@@ -18,8 +18,8 @@ const { Title } = Typography;
 export const Board = () => {
 	const { date } = useParams();
 	const [sortBy] = useOutletContext();
-
 	const { isLoading, sortedList } = useSortedList(sortBy, date);
+
 
 	return (
 		<>
