@@ -4,8 +4,10 @@ import { createBrowserRouter } from 'react-router-dom';
 import Home from './pages/Home';
 import NavBars from './components/NavBars';
 import { Calender } from './components/Calender';
-import { Listing } from './components/List';
+import { TableBlock } from './components/Table';
 import { Board } from './components/Board';
+import { NotFound } from './pages/NotFound';
+
 
 const router = createBrowserRouter([
 	{
@@ -15,9 +17,13 @@ const router = createBrowserRouter([
 				path: '/',
 				element: <Home />,
 				children: [
-					{ path: '/', element: <Board /> },
-					{ path: '/list', element: <Listing /> },
-					{ path: '/calendar', element: <Calender /> },
+					{
+						path: '',
+						element: <Calender />,
+					},
+					{ path: 'board/:date', element: <Board /> },
+					{ path: 'table', element: <TableBlock /> },
+					{ path: '*', element: <NotFound /> },
 				],
 			},
 		],

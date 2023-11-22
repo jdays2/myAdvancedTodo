@@ -49,7 +49,6 @@ export const todosSlice = createSlice({
 		},
 		setActiveTodoId: (state, action) => {
 			state.activeTodoId = action.payload;
-			console.log(`todo ID was changed: ${state.activeTodoId}`)
 		},
 	},
 

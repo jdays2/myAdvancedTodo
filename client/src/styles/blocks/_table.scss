@@ -1,3 +1,30 @@
 .table {
-  margin-top:20px;
+	margin-top: 0px;
+	min-height: 70vh;
+
+	&__info {
+		opacity: 0.5;
+		cursor: pointer;
+		color: #71aaeb;
+
+		@media (hover: hover) {
+			&:hover {
+				opacity: 1;
+			}
+		}
+	}
+
+	&__status-checker {
+		visibility: hidden;
+	}
+
+	.ant-table-row {
+		@media (hover: hover) {
+			&:hover {
+				.table__status-checker {
+					visibility: visible;
+				}
+			}
+		}
+	}
 }

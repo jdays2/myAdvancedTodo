@@ -2,8 +2,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { getList } from "../redux/slices/todosSlice";
 import { useEffect } from "react";
 import { sorter } from "../utils/sorter";
+import { filterByDay } from "../utils/filterByDay";
 
-export const useSortedList = (sortBy) => {
+export const useSortedList = (sortBy, date) => {
   const { list, isLoading } = useSelector((state) => state.todos);
   const dispatch = useDispatch();
 
@@ -11,7 +12,10 @@ export const useSortedList = (sortBy) => {
 		dispatch(getList());
 	}, []);
 
-	const sortedList = sorter(list, sortBy);
+	let sortedList = sorter(list, sortBy);
+	if(date) {
+		sortedList = filterByDay(sortedList, date)
+	}
 
   return {sortedList, isLoading}
 }
