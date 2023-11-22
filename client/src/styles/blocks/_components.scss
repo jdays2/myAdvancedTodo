@@ -12,3 +12,24 @@
 .back-btn {
 	margin-top: 20px
 }
+
+.question-mark {
+	width: 20px;
+	height: 20px;
+	cursor: pointer;
+	color: #71aaeb;
+	opacity: 0.5;
+
+	svg {
+		width: 100% !important;
+		height: 100% !important;
+		-o-object-fit: contain;
+		   object-fit: contain;
+	}
+
+	@media (hover:hover) {
+		&:hover {
+			opacity: 1;
+		}
+	}
+}

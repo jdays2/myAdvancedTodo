@@ -1,23 +1,19 @@
-import { Calendar, Spin } from 'antd';
-import React, { useEffect } from 'react';
-import { BackBtn } from './BackBtn';
-import { useDispatch, useSelector } from 'react-redux';
-import { getList, setActiveTodoId } from '../redux/slices/todosSlice';
-import { PriorityIcon } from './PriorityIcon';
-import { TypeIcon } from './TypeIcon';
-import { toggleModal } from '../redux/slices/modalsSlice';
-import { useOutletContext } from 'react-router-dom';
+import { Calendar, Space, Spin, Tooltip, Typography } from 'antd';
+import React from 'react';
+import { Link, useOutletContext } from 'react-router-dom';
 import { useSortedList } from '../hooks/useSortedList';
+import { PriorityIcon } from './PriorityIcon';
+import { RiQuestionFill } from 'react-icons/ri';
+const { Title } = Typography;
 
 export const Calender = () => {
-	const dispatch = useDispatch();
 	const [sortBy] = useOutletContext();
 	const { isLoading, sortedList } = useSortedList(sortBy);
 
 	const eventsMap = {};
 
 	sortedList.forEach((todo) => {
-		const date = todo.deadline.split('T')[0];
+		const date = todo.created.split('T')[0];
 		if (!eventsMap[date]) {
 			eventsMap[date] = [];
 		}
@@ -25,39 +21,60 @@ export const Calender = () => {
 		eventsMap[date].push({ ...todo });
 	});
 
-	const setActiveTodoIdHandler = (id) => {
-		dispatch(setActiveTodoId(id));
-	};
-
-	const setModalActive = (strModal, strStatus) => {
-		dispatch(toggleModal({ modal: strModal, status: strStatus }));
-	};
-
 	const dateCell = (value) => {
 		const date = value.format('YYYY-MM-DD');
 		const events = eventsMap[date] || [];
+		const title =
+			events.length === 0 ? 'Day is clear' : 'Click here to open day';
 
 		return (
-			<ul className="calendar__list">
-				{events.map((event, index) => (
-					<li
-						onClick={() => {
-							setActiveTodoIdHandler(event._id);
-							setModalActive('details', 'true');
-						}}
-						key={index}
-						className="calendar__item">
-						<PriorityIcon status={event.priority} />
-						<TypeIcon type={event.type} />
-						<strong>{event.title}</strong>
-					</li>
-				))}
-			</ul>
+			<Tooltip
+				title={title}
+				trigger="hover">
+				<Link
+					to={`board/${date}`}
+					className="calendar__list">
+					{events.map((event, index) => {
+						const rest = events.length - 2;
+						if (index <= 1) {
+							return (
+								<div
+									key={index}
+									className="calendar__item">
+									<PriorityIcon status={event.priority} />
+									<strong> {event.title}</strong>
+								</div>
+							);
+						} else if (index === 2 && events.length >= 3) {
+							return (
+								<div
+									key={index}
+									className="calendar__item">
+									<strong>and ({rest}) more...</strong>
+								</div>
+							);
+						} else return null;
+					})}
+				</Link>
+			</Tooltip>
 		);
 	};
 
 	return (
 		<div className="calendar">
+			<Space>
+				<Title
+					level={3}
+					style={{ marginTop: '20px' }}>
+					Calendar
+				</Title>
+
+				<Tooltip
+					placement="rightTop"
+					title={`Stay on top of your tasks with our interactive calendar. Each date on the calendar corresponds to a day when you created tasks. Click on a date to see the tasks you created on that day.`}>
+					<RiQuestionFill className="question-mark" />
+				</Tooltip>
+			</Space>
 			<Spin
 				className="spinner"
 				spinning={isLoading}

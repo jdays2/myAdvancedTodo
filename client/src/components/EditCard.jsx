@@ -17,6 +17,7 @@ import dayjs from 'dayjs';
 import customParseFormat from 'dayjs/plugin/customParseFormat';
 import { editList } from '../redux/slices/todosSlice';
 import { useDispatch, useSelector } from 'react-redux';
+import { calculateDeadlineStatus } from '../utils/calculateDeadlineStatus';
 const dateFormat = 'YYYY-MM-DD';
 dayjs.extend(customParseFormat);
 
@@ -45,6 +46,8 @@ export default function EditCard({ activeId, open, onClose }) {
 			body: card.body,
 		});
 	}, [form, card]);
+
+	console.log(calculateDeadlineStatus(card.deadline));
 
 	return (
 		<Drawer
