@@ -21,6 +21,7 @@ export default function TodoCard({ card }) {
 	const deleted = card.deleted;
 
 	const deadlineChecker = calculateDeadlineStatus(card.deadline);
+	
 	const isExpiredClass =
 		deadlineChecker.isExpired && card.status !== 'resolved'
 			? 'card--expired'
@@ -89,16 +90,10 @@ export default function TodoCard({ card }) {
 									<FaGripfire className="icon__fire" />
 								</Tooltip>
 							)}
-							<Tooltip
-								placement="top"
-								title={`Red alert! You have an overdue task. Time to act!`}>
-								<PriorityIcon status={card.priority} />
-							</Tooltip>
-							<Tooltip
-								placement="top"
-								title={`Red alert! You have an overdue task. Time to act!`}>
-								<TypeIcon type={card.type} />
-							</Tooltip>
+
+							<PriorityIcon status={card.priority} />
+
+							<TypeIcon type={card.type} />
 						</div>
 						{deleted ? null : (
 							<Dropdown

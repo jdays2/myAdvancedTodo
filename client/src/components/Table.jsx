@@ -10,6 +10,7 @@ import { TableType } from './tableRenders/TableType';
 import { TablePriority } from './tableRenders/TablePriority';
 import { TableActions } from './tableRenders/TableActions';
 import { TableDeadline } from './tableRenders/TableDeadline';
+import { TableTitle } from './tableRenders/TableTitle';
 const { Column } = Table;
 const { Title } = Typography;
 
@@ -56,7 +57,8 @@ export const TableBlock = () => {
 						title="Title"
 						dataIndex="title"
 						key="firstName"
-						render={(title) => <Title level={5}>{title}</Title>}
+						render={(title,record) => <TableTitle title={title} record={record}/>
+						}
 					/>
 					<Column
 						width="140px"
