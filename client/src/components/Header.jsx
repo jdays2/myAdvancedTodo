@@ -2,7 +2,7 @@ import { SmileFilled } from '@ant-design/icons';
 import { Button } from 'antd';
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
 import CreateCard from './CreateCard';
 import { toggleModal } from '../redux/slices/modalsSlice.js';
@@ -21,7 +21,7 @@ export default function Header() {
 		dispatch(toggleModal({ modal: strModal, status: strStatus }));
 	};
 
-	return (
+	return (	
 		<>
 			<div className="header">
 				<Link

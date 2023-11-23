@@ -1,11 +1,11 @@
 .card {
-	width: 26rem;
+	width: 260px;
 	background: #fff;
-	border: 0.1rem solid #0000001a;
-	border-radius: 0.8rem;
+	border: 1px solid #0000001a;
+	border-radius: 8px;
 	color: #262525;
 	cursor: default;
-	padding: 1.2rem;
+	padding: 12px;
 	border-bottom: 'none';
 	font-family: 'AROneSans';
 
@@ -25,6 +25,18 @@
 		.card__title {
 			text-decoration: line-through;
 			opacity: 0.45;
+		}
+	}
+
+	&--expired {
+		border-color: #ff5958;
+
+		@media (hover:hover) {
+			&:hover {
+				border-color: #ff3737 !important;
+				border-width: 1px;
+				box-shadow: 0 1px 2px -2px #ff595840, 0 3px 6px 0 #ff595840, 0 5px 12px 4px #ff595840 !important;
+			}
 		}
 	}
 

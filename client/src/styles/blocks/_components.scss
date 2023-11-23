@@ -1,3 +1,36 @@
+@-webkit-keyframes scale010 {
+	0% {
+		transform: scale(0.8);
+	}
+	40% {
+		transform: scale(1);
+	}
+	60% {
+		transform: scale(1.2);
+	}
+	100% {
+		transform: scale(1);
+	}
+}
+
+@keyframes scale010 {
+	0% {
+		transform: scale(1);
+		color: #ff5958;
+	
+	}
+
+	50% {
+		transform: scale(1.2);
+		color: orange;
+	}
+
+	100% {
+		transform: scale(1);
+		color: #ff5958;
+	}
+}
+
 .spinner {
 	position: absolute;
 	top: 30%;
@@ -7,7 +40,20 @@
 
 .icon {
 	opacity: 0.7;
+	width: 20px;
+	height: 20px;
+
+	&__fire {
+		opacity: 1;
+		width: 30px;
+		height: 30px;
+		transition: 0.2s;
+		
+		-webkit-animation: scale010 1.2s infinite;
+		        animation: scale010 1.2s infinite;
+	}
 }
+
 
 .back-btn {
 	margin-top: 20px
