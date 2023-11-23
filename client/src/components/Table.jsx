@@ -1,30 +1,14 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSortedList } from '../hooks/useSortedList';
 import { useOutletContext } from 'react-router-dom';
-import { FaInfoCircle } from 'react-icons/fa';
-import {
-	Spin,
-	Typography,
-	Tag,
-	Table,
-	Space,
-	Flex,
-	Button,
-	Tooltip,
-	Col,
-	Popover,
-} from 'antd';
-import { PriorityIcon } from './PriorityIcon';
-import { TypeIcon } from './TypeIcon';
-import { useDispatch } from 'react-redux';
-import { setActiveTodoId } from '../redux/slices/todosSlice';
-import { toggleModal } from '../redux/slices/modalsSlice';
+
+import { Spin, Typography, Table, Space, Tooltip } from 'antd';
 import { RiQuestionFill } from 'react-icons/ri';
 import { calculateDeadlineStatus } from '../utils/calculateDeadlineStatus';
 import { TableStatus } from './tableRenders/TableStatus';
 import { TableType } from './tableRenders/TableType';
 import { TablePriority } from './tableRenders/TablePriority';
-import { TableEdit } from './tableRenders/TableEdit';
+import { TableActions } from './tableRenders/TableActions';
 import { TableDeadline } from './tableRenders/TableDeadline';
 const { Column } = Table;
 const { Title } = Typography;
@@ -35,7 +19,7 @@ export const TableBlock = () => {
 
 	const [filters, setFilters] = useState({});
 
-	const handleTableChange = (pagination, filters, sorter) => {
+	const handleTableChange = (filters) => {
 		setFilters(filters);
 	};
 
@@ -115,7 +99,12 @@ export const TableBlock = () => {
 						title="Status"
 						dataIndex="status"
 						key="status"
-						render={(status, record) => <TableStatus status={status} card={record} />}
+						render={(status, record) => (
+							<TableStatus
+								status={status}
+								card={record}
+							/>
+						)}
 					/>
 					<Column
 						width="460px"
@@ -151,7 +140,7 @@ export const TableBlock = () => {
 						title="Action"
 						key="action"
 						dataIndex="_id"
-						render={(id) => <TableEdit id={id} />}
+						render={(id, record) => <TableActions id={id} />}
 					/>
 				</Table>
 			)}

@@ -139,6 +139,9 @@
 .table {
 	.card__select {
 		background-color: transparent;
+		width: -webkit-fit-content;
+		width: -moz-fit-content;
+		width: fit-content;
 	}
 
 	.ant-select-selection-item {

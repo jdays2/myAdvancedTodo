@@ -17,14 +17,7 @@ export const TableStatus = ({ status, card }) => {
 			? 'card__select--active'
 			: 'card__select--resolved';
 
-	const color = status === 'resolved' ? 'green' : 'geekblue';
-
 	return (
-		// <Tag className='table__status-tag'
-		// 	color={color}
-		// 	key={status}>
-		// 	{status.toUpperCase()}
-		// </Tag>
 
 		<Select
 			value={status}

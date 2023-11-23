@@ -4,9 +4,13 @@ import { Col, Flex, Popover, Tag } from 'antd';
 import { FaInfoCircle } from 'react-icons/fa';
 
 export const TableDeadline = ({ record }) => {
-	const { created, deadline } = record;
+	const { created, deadline, status } = record;
 	const deadlineChecker = calculateDeadlineStatus(deadline);
-  const isOkey = deadlineChecker.isExpired ? 'red' : 'orange';
+	const isOkey = deadlineChecker.isExpired
+		? status === 'resolved'
+			? 'green'
+			: 'red'
+		: 'orange';
 
 	return (
 		<Flex
@@ -16,7 +20,13 @@ export const TableDeadline = ({ record }) => {
 				className="table__deadline-tag"
 				color={isOkey}
 				key={deadline}>
-				{deadlineChecker.isExpired ? 'EXPIRED' : deadlineChecker.timeDifference.value + ' ' + deadlineChecker.timeDifference.unit}
+				{deadlineChecker.isExpired
+					? status === 'resolved'
+						? 'FULFILLED'
+						: 'EXPIRED'
+					: deadlineChecker.timeDifference.value +
+					  ' ' +
+					  deadlineChecker.timeDifference.unit}
 			</Tag>
 			<Popover
 				placement="right"

@@ -12,8 +12,7 @@ export const useSortedList = (sortBy, date) => {
 	useEffect(() => {
 		dispatch(getList());
 	}, []);
-
-	console.log(`before sorter(): ${list}`)
+	
 	let sortedList = sorter(list, sortBy);
 	if(date) {
 		sortedList = filterByDay(sortedList, date)

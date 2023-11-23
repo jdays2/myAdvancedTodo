@@ -3,7 +3,6 @@ import React from 'react';
 import { TypeIcon } from '../TypeIcon';
 
 export const TableType = ({ type }) => {
-	console.log(type);
 	return (
 		<Flex
 			align="center"
