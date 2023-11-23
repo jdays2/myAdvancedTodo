@@ -16,7 +16,7 @@ export const TypeIcon = ({ type }) => (
 			<Tooltip
 				placement="top"
 				title={`A personal task for you. Attend to matters related to your personal life and well-being.`}>
-				<MdWork className="icon" />
+				
 				<PiPersonArmsSpreadFill className="icon" />
 			</Tooltip>
 		)}
