@@ -86,8 +86,8 @@ export const TableBlock = () => {
 						onFilter={(value, record) => {
 							const deadlineChecker = calculateDeadlineStatus(record.deadline);
 							return (
-								(value === 'overdue' && deadlineChecker === true) ||
-								(value !== 'overdue' && deadlineChecker !== true)
+								(value === 'overdue' && deadlineChecker.isExpired === true) ||
+								(value !== 'overdue' && deadlineChecker.isExpired !== true)
 							);
 						}}
 						sorter={(a, b) => {
@@ -115,7 +115,7 @@ export const TableBlock = () => {
 						title="Status"
 						dataIndex="status"
 						key="status"
-						render={(status) => <TableStatus status={status} />}
+						render={(status, record) => <TableStatus status={status} card={record} />}
 					/>
 					<Column
 						width="460px"

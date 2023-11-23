@@ -1,9 +1,9 @@
 import React from 'react';
 import { Space, Select, Drawer, Row, Col, Button } from 'antd';
 
-import { selectItems } from './TodoCard';
 import { editList, setActiveTodoId } from '../redux/slices/todosSlice';
 import { useDispatch, useSelector } from 'react-redux';
+import { selectStatusItems } from '../utils/selectFields';
 
 export default function DetailsCard({
 	activeId,
@@ -64,7 +64,7 @@ export default function DetailsCard({
 						className={`card__select ${selectActiveClass}`}
 						bordered={false}
 						onChange={editStatus}
-						options={selectItems}
+						options={selectStatusItems}
 					/>
 				</Col>
 				<Col

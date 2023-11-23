@@ -11,17 +11,7 @@ import { PriorityIcon } from './PriorityIcon';
 import { TypeIcon } from './TypeIcon';
 import { setActiveTodoId } from '../redux/slices/todosSlice';
 import { toggleModal } from '../redux/slices/modalsSlice';
-
-export const selectItems = [
-	{
-		value: 'active',
-		label: 'active',
-	},
-	{
-		value: 'resolved',
-		label: 'resolved',
-	},
-];
+import { selectStatusItems } from '../utils/selectFields';
 
 export default function TodoCard({ card }) {
 	const dispatch = useDispatch();
@@ -107,7 +97,7 @@ export default function TodoCard({ card }) {
 								className={`card__select ${selectActiveClass}`}
 								bordered={false}
 								onChange={editStatus}
-								options={selectItems}
+								options={selectStatusItems}
 							/>
 
 							<Button

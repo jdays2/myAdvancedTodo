@@ -15,7 +15,6 @@
 		}
 	}
 
-
 	.ant-card-body {
 		padding: 0;
 	}
@@ -81,7 +80,6 @@
 	}
 
 	&__more-link {
-		
 		&:hover {
 			span {
 				text-decoration: underline;
@@ -102,16 +100,22 @@
 	}
 
 	&__select {
-		font-size: 20px;
 		font-family: 'AROneSans';
-		width: 11rem;
-		height: 3rem;
-		padding: 0.1rem;
+		width: 110px;
 
-		border-radius: 1rem;
+	font-weight: 600;
+		height: -webkit-fit-content;
+
+		height: -moz-fit-content;
+
+		height: fit-content;
+		padding: 0px;
+		text-transform: uppercase;
+		border-radius: 6px;
 
 		.ant-select-selection-item {
-			font-size: 14px;
+			font-size: 13px;
+			text-transform: uppercase;
 			font-family: 'AROneSans';
 		}
 
@@ -128,5 +132,17 @@
 				color: #5282ff;
 			}
 		}
+	}
+}
+
+//внутри table
+.table {
+	.card__select {
+		background-color: transparent;
+	}
+
+	.ant-select-selection-item {
+		font-size: 13px;
+		font-weight: 700;
 	}
 }
