@@ -30,7 +30,7 @@ export const Calender = () => {
 		return (
 			<Tooltip
 				title={title}
-				trigger="hover">
+				trigger="hover" style={{bottom: "30px"}}>
 				<Link
 					to={`board/${date}`}
 					className="calendar__list">

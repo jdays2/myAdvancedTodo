@@ -18,13 +18,16 @@ const { Title } = Typography;
 export const Board = () => {
 	const { date } = useParams();
 	const [sortBy] = useOutletContext();
-
 	const { isLoading, sortedList } = useSortedList(sortBy, date);
 
 	return (
 		<>
 			<Space>
-				<Title level={3} style={{ marginTop: '20px' }}>Activity per {date}</Title>
+				<Title
+					level={3}
+					style={{ marginTop: '20px' }}>
+					Activity per {date}
+				</Title>
 
 				<Tooltip
 					placement="rightTop"
@@ -44,7 +47,7 @@ export const Board = () => {
 						? sortedList.map((card) => {
 								return (
 									<Col
-										span={6}
+										span={Math.floor(24 / Math.min(sortedList.length, 4))}
 										key={card._id}>
 										<TodoCard card={card} />
 									</Col>

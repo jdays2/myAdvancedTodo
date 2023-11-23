@@ -1,32 +1,32 @@
 import EditCard from './EditCard';
 
 import React, { useState } from 'react';
-import { Card, Select, Dropdown, Button } from 'antd';
+import { Card, Select, Dropdown, Button, Tooltip } from 'antd';
 
 import { MoreOutlined } from '@ant-design/icons';
 import DetailsCard from './DetailsCard';
 import { useDispatch } from 'react-redux';
+import { FaGripfire } from 'react-icons/fa6';
 import { deleteTodos, editList } from '../redux/slices/todosSlice';
 import { PriorityIcon } from './PriorityIcon';
 import { TypeIcon } from './TypeIcon';
 import { setActiveTodoId } from '../redux/slices/todosSlice';
 import { toggleModal } from '../redux/slices/modalsSlice';
-
-export const selectItems = [
-	{
-		value: 'active',
-		label: 'active',
-	},
-	{
-		value: 'resolved',
-		label: 'resolved',
-	},
-];
+import { selectStatusItems } from '../utils/selectFields';
+import { calculateDeadlineStatus } from '../utils/calculateDeadlineStatus';
 
 export default function TodoCard({ card }) {
 	const dispatch = useDispatch();
 
 	const deleted = card.deleted;
+
+	const deadlineChecker = calculateDeadlineStatus(card.deadline);
+	
+	const isExpiredClass =
+		deadlineChecker.isExpired && card.status !== 'resolved'
+			? 'card--expired'
+			: '';
+	const isExpired = deadlineChecker.isExpired && card.status !== 'resolved';
 
 	const setDeleted = () => {
 		const id = card._id;
@@ -59,9 +59,8 @@ export default function TodoCard({ card }) {
 			label: (
 				<button
 					onClick={() => {
-						setActiveTodoIdHandler(card._id)
+						setActiveTodoIdHandler(card._id);
 						setModalActive('edit', 'true');
-						
 					}}>
 					Edit
 				</button>
@@ -78,13 +77,22 @@ export default function TodoCard({ card }) {
 		<>
 			<Card
 				hoverable={deleted ? false : true}
-				className={`card ${cardDeleted}`}>
+				className={`card ${cardDeleted} ${isExpiredClass}`}>
 				<div className="card__content">
 					<div className="card__head">
 						<div className="card__head-box">
 							<p className="card__date">{card.created}</p>
 
+							{isExpired && (
+								<Tooltip
+									placement="top"
+									title={`Red alert! You have an overdue task. Time to act!`}>
+									<FaGripfire className="icon__fire" />
+								</Tooltip>
+							)}
+
 							<PriorityIcon status={card.priority} />
+
 							<TypeIcon type={card.type} />
 						</div>
 						{deleted ? null : (
@@ -107,7 +115,7 @@ export default function TodoCard({ card }) {
 								className={`card__select ${selectActiveClass}`}
 								bordered={false}
 								onChange={editStatus}
-								options={selectItems}
+								options={selectStatusItems}
 							/>
 
 							<Button

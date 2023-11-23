@@ -6,12 +6,13 @@ import { filterByDay } from "../utils/filterByDay";
 
 export const useSortedList = (sortBy, date) => {
   const { list, isLoading } = useSelector((state) => state.todos);
+	
   const dispatch = useDispatch();
 
 	useEffect(() => {
 		dispatch(getList());
 	}, []);
-
+	
 	let sortedList = sorter(list, sortBy);
 	if(date) {
 		sortedList = filterByDay(sortedList, date)

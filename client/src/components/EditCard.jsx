@@ -47,8 +47,6 @@ export default function EditCard({ activeId, open, onClose }) {
 		});
 	}, [form, card]);
 
-	console.log(calculateDeadlineStatus(card.deadline));
-
 	return (
 		<Drawer
 			title="Edit TODO CARD"

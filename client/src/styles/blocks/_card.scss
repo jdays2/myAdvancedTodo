@@ -1,11 +1,11 @@
 .card {
-	width: 26rem;
+	width: 260px;
 	background: #fff;
-	border: 0.1rem solid #0000001a;
-	border-radius: 0.8rem;
+	border: 1px solid #0000001a;
+	border-radius: 8px;
 	color: #262525;
 	cursor: default;
-	padding: 1.2rem;
+	padding: 12px;
 	border-bottom: 'none';
 	font-family: 'AROneSans';
 
@@ -14,7 +14,6 @@
 			opacity: 1;
 		}
 	}
-
 
 	.ant-card-body {
 		padding: 0;
@@ -26,6 +25,18 @@
 		.card__title {
 			text-decoration: line-through;
 			opacity: 0.45;
+		}
+	}
+
+	&--expired {
+		border-color: #ff5958;
+
+		@media (hover:hover) {
+			&:hover {
+				border-color: #ff3737 !important;
+				border-width: 1px;
+				box-shadow: 0 1px 2px -2px #ff595840, 0 3px 6px 0 #ff595840, 0 5px 12px 4px #ff595840 !important;
+			}
 		}
 	}
 
@@ -81,7 +92,6 @@
 	}
 
 	&__more-link {
-		
 		&:hover {
 			span {
 				text-decoration: underline;
@@ -102,16 +112,22 @@
 	}
 
 	&__select {
-		font-size: 20px;
 		font-family: 'AROneSans';
-		width: 11rem;
-		height: 3rem;
-		padding: 0.1rem;
+		width: 110px;
 
-		border-radius: 1rem;
+	font-weight: 600;
+		height: -webkit-fit-content;
+
+		height: -moz-fit-content;
+
+		height: fit-content;
+		padding: 0px;
+		text-transform: uppercase;
+		border-radius: 6px;
 
 		.ant-select-selection-item {
-			font-size: 14px;
+			font-size: 13px;
+			text-transform: uppercase;
 			font-family: 'AROneSans';
 		}
 
@@ -128,5 +144,20 @@
 				color: #5282ff;
 			}
 		}
+	}
+}
+
+//внутри table
+.table {
+	.card__select {
+		background-color: transparent;
+		width: -webkit-fit-content;
+		width: -moz-fit-content;
+		width: fit-content;
+	}
+
+	.ant-select-selection-item {
+		font-size: 13px;
+		font-weight: 700;
 	}
 }
