@@ -5,6 +5,7 @@ import TodoCard from './TodoCard';
 import { useOutletContext, useParams } from 'react-router-dom';
 import { BackBtn } from './ui/BackBtn';
 import { useSortedList } from '../hooks/useSortedList';
+import useTitle from '../hooks/useTitle';
 
 const { Title } = Typography;
 
@@ -12,6 +13,8 @@ export const Board = () => {
 	const { date } = useParams();
 	const [sortBy] = useOutletContext();
 	const { isLoading, sortedList } = useSortedList(sortBy, date);
+	
+	useTitle(`${date} list`);
 
 	return (
 		<>

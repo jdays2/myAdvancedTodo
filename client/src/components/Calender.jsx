@@ -6,15 +6,16 @@ import { RiQuestionFill } from 'react-icons/ri';
 import { monthTransformer } from '../utils/monthTransformer';
 import { CellRender } from './calendarRenders/CellRender';
 import { createCalendarList } from '../utils/createCalendarList';
+import useTitle from '../hooks/useTitle';
 const { Title } = Typography;
 
 export const Calender = () => {
 	const [sortBy] = useOutletContext();
-
 	const [date, setDate] = useState(monthTransformer(new Date()));
-
 	const { isLoading, sortedList } = useSortedList(sortBy);
 	const { eventsMap } = createCalendarList(sortedList);
+
+	useTitle(`Calendar`);
 
 	return (
 		<div className="calendar">
@@ -38,10 +39,12 @@ export const Calender = () => {
 			/>
 			{!isLoading && (
 				<Flex vertical="false">
-					<Title level={4} className='calendar__month-title'>
+					<Title
+						level={4}
+						className="calendar__month-title">
 						{date.month} {date.year}
 					</Title>
-					
+
 					<Calendar
 						mode="month"
 						cellRender={(value) => (

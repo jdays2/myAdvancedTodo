@@ -11,6 +11,7 @@ import { TablePriority } from './tableRenders/TablePriority';
 import { TableActions } from './tableRenders/TableActions';
 import { TableDeadline } from './tableRenders/TableDeadline';
 import { TableTitle } from './tableRenders/TableTitle';
+import useTitle from '../hooks/useTitle';
 const { Column } = Table;
 const { Title } = Typography;
 
@@ -19,6 +20,8 @@ export const TableBlock = () => {
 	const { isLoading, sortedList } = useSortedList(sortBy);
 
 	const [filters, setFilters] = useState({});
+
+	useTitle(`Table`);
 
 	const handleTableChange = (filters) => {
 		setFilters(filters);

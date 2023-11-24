@@ -1,8 +1,10 @@
 import { Button, Result } from 'antd';
 import React from 'react';
 import { Link } from 'react-router-dom';
+import useTitle from '../hooks/useTitle'
 
 export const NotFound = () => {
+	useTitle('Not Found')
 	return (
 		<Result
 			status="404"
