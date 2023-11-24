@@ -38,7 +38,11 @@ export default function CreateCard({ open, onClose }) {
 
 	return (
 		<Drawer
-			title="Create New TODO"
+			title={
+				dateOfCreation.length
+					? `Create a TODO for ${dateOfCreation}`
+					: `Create New TODO`
+			}
 			placement="right"
 			onClose={onClose}
 			open={open}>

@@ -1,4 +1,4 @@
-import { Col, Empty, Row, Space, Spin, Tooltip, Typography } from 'antd';
+import { Col, Empty, Flex, Row, Space, Spin, Tooltip, Typography } from 'antd';
 import { RiQuestionFill } from 'react-icons/ri';
 import React from 'react';
 import TodoCard from './TodoCard';
@@ -6,6 +6,7 @@ import { useOutletContext, useParams } from 'react-router-dom';
 import { BackBtn } from './ui/BackBtn';
 import { useSortedList } from '../hooks/useSortedList';
 import useTitle from '../hooks/useTitle';
+import { CalendarMini } from './CalendarMini';
 
 const { Title } = Typography;
 
@@ -13,14 +14,15 @@ export const Board = () => {
 	const { date } = useParams();
 	const [sortBy] = useOutletContext();
 	const { isLoading, sortedList } = useSortedList(sortBy, date);
-	
+
 	useTitle(`${date} list`);
 
 	return (
 		<>
-			<Row>
+			<Flex justify='space-between' style={{marginTop: '20px', width: '100%'}}>
 				<BackBtn />
-			</Row>
+				<CalendarMini/>
+			</Flex>
 			<Row>
 				<Space>
 					<Title

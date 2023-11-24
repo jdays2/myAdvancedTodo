@@ -9,7 +9,7 @@ export const CellRender = ({ value, eventsMap }) => {
 	const events = eventsMap[date] || [];
 
 	const isListEmpty = events.length === 0;
-  console.log(isListEmpty)
+
 	const title = isListEmpty ? 'Day is clear' : 'Click here to open day';
 	const calCellClass = `calendar__list ${
 		isListEmpty ? 'calendar__list--untouch' : ''

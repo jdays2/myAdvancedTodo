@@ -16,7 +16,7 @@ const { Column } = Table;
 const { Title } = Typography;
 
 export const TableBlock = () => {
-	const [sortBy] = useOutletContext();
+	const sortBy = '';
 	const { isLoading, sortedList } = useSortedList(sortBy);
 
 	const [filters, setFilters] = useState({});
@@ -60,8 +60,12 @@ export const TableBlock = () => {
 						title="Title"
 						dataIndex="title"
 						key="firstName"
-						render={(title,record) => <TableTitle title={title} record={record}/>
-						}
+						render={(title, record) => (
+							<TableTitle
+								title={title}
+								record={record}
+							/>
+						)}
 					/>
 					<Column
 						width="140px"
@@ -104,6 +108,11 @@ export const TableBlock = () => {
 						title="Status"
 						dataIndex="status"
 						key="status"
+						filters={[
+							{ text: 'Resolved', value: 'resolved' },
+							{ text: 'Active', value: 'active' },
+						]}
+						onFilter={(value, record) => record.status === value}
 						render={(status, record) => (
 							<TableStatus
 								status={status}

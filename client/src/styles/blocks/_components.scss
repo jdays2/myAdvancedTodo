@@ -71,10 +71,12 @@
 			}
 		}
 	}
-}
 
-.back-btn {
-	margin-top: 20px;
+	&__calendar {
+		width: 22px;
+		height: 100%;
+
+	}
 }
 
 .button {
@@ -91,6 +93,15 @@
 		right: 6px;
 
 		display: none;
+	}
+
+
+	&__calendar {
+		padding-left: 4px;
+		padding-right: 4px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
 	}
 }
 

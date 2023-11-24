@@ -13,7 +13,12 @@
 		padding-top: 0;
 
 		&--untouch {
-			pointer-events: none;
+			pointer-events: none !important;
+		}
+
+		&--empty {
+			opacity: 0.2;
+			cursor: default;
 		}
 	}
 
@@ -39,6 +44,21 @@
 		position: absolute;
 		left: 0;
 		top: 80px;
+	}
+
+	&__mini {
+		width: 400px;
+		position: relative;
+	}
+
+	&__tag {
+		width: 100%;
+		height: 24px;
+		display: flex;
+		text-align: center;
+		-webkit-margin-end: 0;
+		margin-inline-end: 0;
+		justify-content: center;
 	}
 }
 
