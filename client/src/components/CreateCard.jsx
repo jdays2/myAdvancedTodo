@@ -12,11 +12,12 @@ import {
 } from 'antd';
 
 import { addTodos } from '../redux/slices/todosSlice';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { getDate } from '../utils/getDate';
 
 import dayjs from 'dayjs';
 import customParseFormat from 'dayjs/plugin/customParseFormat';
+import { resetDateOfCreation } from '../redux/slices/modalsSlice';
 const dateFormat = 'YYYY-MM-DD';
 dayjs.extend(customParseFormat);
 
@@ -24,18 +25,24 @@ const { TextArea } = Input;
 
 export default function CreateCard({ open, onClose }) {
 	const dispatch = useDispatch();
+	const { dateOfCreation } = useSelector((state) => state.modals);
 
 	const handleFormSubmit = (value) => {
-		value.created = getDate();
+		value.created = dateOfCreation.length ? dateOfCreation : getDate();
 		value.deadline = value.deadline.format(dateFormat);
 		value.status = 'active';
 		dispatch(addTodos(value));
+		dispatch(resetDateOfCreation());
 		onClose();
 	};
 
 	return (
 		<Drawer
-			title="Create New TODO"
+			title={
+				dateOfCreation.length
+					? `Create a TODO for ${dateOfCreation}`
+					: `Create New TODO`
+			}
 			placement="right"
 			onClose={onClose}
 			open={open}>

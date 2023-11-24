@@ -1,15 +1,21 @@
-import React, { useState } from 'react';
-import { Radio, Space, Typography, Flex, Dropdown, Select } from 'antd';
+import React, { useEffect, useState } from 'react';
+import { Radio, Space, Typography, Flex, Select } from 'antd';
 import { Outlet } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
-import { DownOutlined } from '@ant-design/icons';
-import { useSelector } from 'react-redux';
 const { Title } = Typography;
 
 export default function Home() {
 	const [size, setSize] = useState('');
 	const [sortBy, setSortBy] = useState('');
 	const navigate = useNavigate();
+	const path = window.location.pathname;
+	const isTable = path === '/table';
+
+	useEffect(() => {
+		if (!isTable) return;
+
+		setSize('table');
+	}, [path]);
 
 	const handleViewChange = (e) => {
 		const value = e.target.value;
@@ -52,6 +58,7 @@ export default function Home() {
 						defaultValue={sortBy}
 						style={{ width: 120 }}
 						onChange={handleFilterBy}
+						disabled={isTable}
 						options={[
 							{ value: '', label: <span>All</span> },
 							{ value: 'active', label: <span>Active</span> },

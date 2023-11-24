@@ -17,7 +17,6 @@
 	0% {
 		transform: scale(1);
 		color: #ff5958;
-	
 	}
 
 	50% {
@@ -43,20 +42,67 @@
 	width: 20px;
 	height: 20px;
 
+	&__back {
+		width: 22px;
+		height: -webkit-fit-content;
+		height: -moz-fit-content;
+		height: fit-content;
+	}
+
 	&__fire {
 		opacity: 1;
 		width: 30px;
 		height: 30px;
 		transition: 0.2s;
-		
+
 		-webkit-animation: scale010 1.2s infinite;
-		        animation: scale010 1.2s infinite;
+		animation: scale010 1.2s infinite;
+	}
+
+	&__add-new {
+		width: 24px;
+		height: 24px;
+		color: gray;
+		opacity: 0.5;
+		@media (hover: hover) {
+			&:hover {
+				opacity: 1;
+				color: #71aaeb;
+			}
+		}
+	}
+
+	&__calendar {
+		width: 22px;
+		height: 100%;
+
 	}
 }
 
+.button {
+	&__add-new {
+		padding: 0;
+		width: -webkit-fit-content;
+		width: -moz-fit-content;
+		width: fit-content;
+		height: -webkit-fit-content;
+		height: -moz-fit-content;
+		height: fit-content;
+		position: absolute;
+		bottom: 0px;
+		right: 6px;
 
-.back-btn {
-	margin-top: 20px
+		display: none;
+	}
+
+
+	&__calendar {
+		padding-left: 4px;
+		padding-right: 4px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
 }
 
 .question-mark {
@@ -70,10 +116,10 @@
 		width: 100% !important;
 		height: 100% !important;
 		-o-object-fit: contain;
-		   object-fit: contain;
+		object-fit: contain;
 	}
 
-	@media (hover:hover) {
+	@media (hover: hover) {
 		&:hover {
 			opacity: 1;
 		}

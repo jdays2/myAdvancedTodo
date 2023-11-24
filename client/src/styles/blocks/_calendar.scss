@@ -1,5 +1,6 @@
 .calendar {
 	min-height: 70vh;
+	position: relative;
 
 	&__list {
 		display: flex;
@@ -10,6 +11,15 @@
 		padding: 8px;
 		padding-bottom: 6px !important;
 		padding-top: 0;
+
+		&--untouch {
+			pointer-events: none !important;
+		}
+
+		&--empty {
+			opacity: 0.2;
+			cursor: default;
+		}
 	}
 
 	&__item {
@@ -18,9 +28,37 @@
 		align-items: center;
 		cursor: pointer;
 
+		strong {
+			white-space: nowrap; /* Текст не переносится */
+			overflow: hidden; /* Обрезаем всё за пределами блока */
+			text-overflow: ellipsis; /* Показываем точки */
+			width: 90%;
+		}
+
 		.icon {
 			opacity: 1;
 		}
+	}
+
+	&__month-title {
+		position: absolute;
+		left: 0;
+		top: 80px;
+	}
+
+	&__mini {
+		width: 400px;
+		position: relative;
+	}
+
+	&__tag {
+		width: 100%;
+		height: 24px;
+		display: flex;
+		text-align: center;
+		-webkit-margin-end: 0;
+		margin-inline-end: 0;
+		justify-content: center;
 	}
 }
 
@@ -31,6 +69,14 @@
 		&:hover {
 			.icon {
 				opacity: 1;
+			}
+
+			//показ кнопки добавления новой карточки за дату
+
+			.button {
+				&__add-new {
+					display: block;
+				}
 			}
 		}
 	}

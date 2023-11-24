@@ -1,15 +1,12 @@
-import EditCard from './EditCard';
-
-import React, { useState } from 'react';
+import React from 'react';
 import { Card, Select, Dropdown, Button, Tooltip } from 'antd';
 
 import { MoreOutlined } from '@ant-design/icons';
-import DetailsCard from './DetailsCard';
 import { useDispatch } from 'react-redux';
 import { FaGripfire } from 'react-icons/fa6';
 import { deleteTodos, editList } from '../redux/slices/todosSlice';
-import { PriorityIcon } from './PriorityIcon';
-import { TypeIcon } from './TypeIcon';
+import { PriorityIcon } from './ui/PriorityIcon';
+import { TypeIcon } from './ui/TypeIcon';
 import { setActiveTodoId } from '../redux/slices/todosSlice';
 import { toggleModal } from '../redux/slices/modalsSlice';
 import { selectStatusItems } from '../utils/selectFields';

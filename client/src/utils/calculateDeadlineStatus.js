@@ -3,7 +3,6 @@ export const calculateDeadlineStatus = (deadline) => {
   const deadlineDateObj = new Date(deadline);
 
   const isExpired = currentDate.getTime() > deadlineDateObj.getTime();
-
   const timeDiff = deadlineDateObj.getTime() - currentDate.getTime();
 
   const oneMinute = 60 * 1000;
