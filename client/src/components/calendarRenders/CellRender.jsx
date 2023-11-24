@@ -1,7 +1,7 @@
 import { Tooltip } from 'antd';
 import React from 'react';
 import { PriorityIcon } from '../ui/PriorityIcon';
-import { AddTodoBtn } from '../ui/addTodoBtn';
+import { AddTodoBtn } from '../ui/AddTodoBtn';
 import { Link } from 'react-router-dom';
 
 export const CellRender = ({ value, eventsMap }) => {

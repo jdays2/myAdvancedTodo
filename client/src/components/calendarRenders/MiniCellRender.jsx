@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { AiOutlineOrderedList } from 'react-icons/ai';
 import { Flex, Tag } from 'antd';
 import { setRarityClass } from '../../utils/setRarityClass';
 
