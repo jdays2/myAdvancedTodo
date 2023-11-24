@@ -5,7 +5,6 @@ import {
 	FcMediumPriority,
 	FcLowPriority,
 } from 'react-icons/fc';
-import { MdWork } from 'react-icons/md';
 
 export const PriorityIcon = ({ status }) => (
 	<>

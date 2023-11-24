@@ -1,5 +1,5 @@
 import React from 'react'
-import { PriorityIcon } from '../PriorityIcon'
+import { PriorityIcon } from '../ui/PriorityIcon'
 import { Flex } from 'antd'
 
 export const TablePriority = ({priority}) => (

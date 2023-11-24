@@ -1,6 +1,6 @@
 import { Flex } from 'antd';
 import React from 'react';
-import { TypeIcon } from '../TypeIcon';
+import { TypeIcon } from '../ui/TypeIcon';
 
 export const TableType = ({ type }) => {
 	return (

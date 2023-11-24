@@ -4,6 +4,7 @@ const initialState = {
 	detailsIsActive: false,
 	editIsActive: false,
 	createIsActive: false,
+	dateOfCreation: '',
 };
 
 const modalsSlice = createSlice({
@@ -11,11 +12,11 @@ const modalsSlice = createSlice({
 	initialState,
 	reducers: {
 		toggleModal: (state, action) => {
-    
 			//only 'open' or 'close'
 			const status = action.payload.status;
 			//only 'details', 'edit', 'create'
 			const modal = action.payload.modal;
+			const date = action.payload.date;
 
 			switch (modal) {
 				case 'details':
@@ -28,13 +29,15 @@ const modalsSlice = createSlice({
 				case 'edit':
 					if (status === 'true') {
 						state.editIsActive = true;
-          
 					} else {
 						state.editIsActive = false;
 					}
 					break;
 				case 'create':
 					if (status === 'true') {
+						if (date) {
+							state.dateOfCreation = date;
+						}
 						state.createIsActive = true;
 					} else {
 						state.createIsActive = false;
@@ -44,9 +47,12 @@ const modalsSlice = createSlice({
 					break;
 			}
 		},
+		resetDateOfCreation: (state) => {
+			state.dateOfCreation = '';
+		},
 	},
 });
 
-export const { toggleModal } = modalsSlice.actions;
+export const { toggleModal, resetDateOfCreation } = modalsSlice.actions;
 
 export default modalsSlice.reducer;

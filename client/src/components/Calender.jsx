@@ -1,64 +1,20 @@
-import { Calendar, Space, Spin, Tooltip, Typography } from 'antd';
-import React from 'react';
-import { Link, useOutletContext } from 'react-router-dom';
+import { Calendar, Flex, Space, Spin, Tooltip, Typography } from 'antd';
+import React, { useState } from 'react';
+import { useOutletContext } from 'react-router-dom';
 import { useSortedList } from '../hooks/useSortedList';
-import { PriorityIcon } from './PriorityIcon';
 import { RiQuestionFill } from 'react-icons/ri';
+import { monthTransformer } from '../utils/monthTransformer';
+import { CellRender } from './calendarRenders/CellRender';
+import { createCalendarList } from '../utils/createCalendarList';
 const { Title } = Typography;
 
 export const Calender = () => {
 	const [sortBy] = useOutletContext();
+
+	const [date, setDate] = useState(monthTransformer(new Date()));
+
 	const { isLoading, sortedList } = useSortedList(sortBy);
-
-	const eventsMap = {};
-
-	sortedList.forEach((todo) => {
-		const date = todo.created.split('T')[0];
-		if (!eventsMap[date]) {
-			eventsMap[date] = [];
-		}
-
-		eventsMap[date].push({ ...todo });
-	});
-
-	const dateCell = (value) => {
-		const date = value.format('YYYY-MM-DD');
-		const events = eventsMap[date] || [];
-		const title =
-			events.length === 0 ? 'Day is clear' : 'Click here to open day';
-
-		return (
-			<Tooltip
-				title={title}
-				trigger="hover" style={{bottom: "30px"}}>
-				<Link
-					to={`board/${date}`}
-					className="calendar__list">
-					{events.map((event, index) => {
-						const rest = events.length - 2;
-						if (index <= 1) {
-							return (
-								<div
-									key={index}
-									className="calendar__item">
-									<PriorityIcon status={event.priority} />
-									<strong> {event.title}</strong>
-								</div>
-							);
-						} else if (index === 2 && events.length >= 3) {
-							return (
-								<div
-									key={index}
-									className="calendar__item">
-									<strong>and ({rest}) more...</strong>
-								</div>
-							);
-						} else return null;
-					})}
-				</Link>
-			</Tooltip>
-		);
-	};
+	const { eventsMap } = createCalendarList(sortedList);
 
 	return (
 		<div className="calendar">
@@ -81,10 +37,24 @@ export const Calender = () => {
 				size="large"
 			/>
 			{!isLoading && (
-				<Calendar
-					mode="month"
-					cellRender={dateCell}
-				/>
+				<Flex vertical="false">
+					<Title level={4} className='calendar__month-title'>
+						{date.month} {date.year}
+					</Title>
+					
+					<Calendar
+						mode="month"
+						cellRender={(value) => (
+							<CellRender
+								value={value}
+								eventsMap={eventsMap}
+							/>
+						)}
+						onPanelChange={(d) => {
+							setDate(monthTransformer(d.$d));
+						}}
+					/>
+				</Flex>
 			)}
 		</div>
 	);
