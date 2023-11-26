@@ -12,7 +12,7 @@ export const TableTitle = ({ title, record }) => {
 
 	return (
 		<Flex
-			gap={10}
+			gap={4}
 			align="center"
 			className="table__title">
 			{isExpired && (
