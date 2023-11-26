@@ -13,7 +13,8 @@ export const TableTitle = ({ title, record }) => {
 	return (
 		<Flex
 			gap={10}
-			align="center">
+			align="center"
+			className="table__title">
 			{isExpired && (
 				<Tooltip
 					placement="top"

@@ -1,8 +1,9 @@
-import { Tooltip } from 'antd';
+import { Tag, Tooltip } from 'antd';
 import React from 'react';
 import { PriorityIcon } from '../ui/PriorityIcon';
 import { AddTodoBtn } from '../ui/AddTodoBtn';
 import { Link } from 'react-router-dom';
+import { setRarityClass } from '../../utils/setRarityClass';
 
 export const CellRender = ({ value, eventsMap }) => {
 	const date = value.format('YYYY-MM-DD');
@@ -14,13 +15,18 @@ export const CellRender = ({ value, eventsMap }) => {
 	const calCellClass = `calendar__list ${
 		isListEmpty ? 'calendar__list--untouch' : ''
 	}`;
+	const callCellMobClass = `calendar__cell--mob ${
+		isListEmpty ? 'calendar__cell--untouch' : ''
+	}`;
+	const tagClass = setRarityClass(events.length);
 
 	return (
 		<>
 			<Tooltip
 				title={title}
 				trigger="hover"
-				style={{ bottom: '30px' }}>
+				style={{ bottom: '30px' }}
+				className="calendar__cell">
 				<Link
 					to={`board/${date}`}
 					className={calCellClass}>
@@ -47,6 +53,13 @@ export const CellRender = ({ value, eventsMap }) => {
 					})}
 				</Link>
 			</Tooltip>
+
+			<Link
+				to={`board/${date}`}
+				className={callCellMobClass}>
+				<Tag color={tagClass}>{events.length > 0 ? events.length : 0}</Tag>
+			</Link>
+
 			<AddTodoBtn date={date} />
 		</>
 	);

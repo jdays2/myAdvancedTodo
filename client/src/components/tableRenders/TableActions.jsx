@@ -10,7 +10,6 @@ import { toggleModal } from '../../redux/slices/modalsSlice';
 import { Button, Popconfirm, Space } from 'antd';
 
 export const TableActions = ({ id }) => {
-	const [editing, setEditing] = useState(false);
 	const dispatch = useDispatch();
 
 	const setModalActive = (id, strModal, strStatus) => {
@@ -23,10 +22,6 @@ export const TableActions = ({ id }) => {
 		dispatch(getList());
 	};
 
-	const toggleEdit = () => {
-		setEditing(!editing);
-	};
-
 	return (
 		<Space size="middle">
 			<Button
@@ -35,6 +30,14 @@ export const TableActions = ({ id }) => {
 					setModalActive(id, 'edit', 'true');
 				}}>
 				Edit
+			</Button>
+
+			<Button 
+				type='default'
+				onClick={() => {
+					setModalActive(id, 'details', 'true');
+				}}>
+				Open
 			</Button>
 
 			<Popconfirm

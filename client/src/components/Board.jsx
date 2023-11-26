@@ -15,13 +15,15 @@ export const Board = () => {
 	const [sortBy] = useOutletContext();
 	const { isLoading, sortedList } = useSortedList(sortBy, date);
 
-	useTitle(`${date} list`);
+	useTitle(`${date}`);
 
 	return (
 		<>
-			<Flex justify='space-between' style={{marginTop: '20px', width: '100%'}}>
+			<Flex
+				justify="space-between"
+				style={{ marginTop: '20px', width: '100%' }}>
 				<BackBtn />
-				<CalendarMini/>
+				<CalendarMini />
 			</Flex>
 			<Row>
 				<Space>
@@ -49,7 +51,11 @@ export const Board = () => {
 							? sortedList.map((card) => {
 									return (
 										<Col
-											span={Math.floor(24 / Math.min(sortedList.length, 4))}
+											xl={Math.floor(24 / Math.min(sortedList.length, 4))}
+											lg={12}
+											md={12}
+											sm={24}
+											xs={24}
 											key={card._id}>
 											<TodoCard card={card} />
 										</Col>

@@ -9,8 +9,7 @@ import { MiniCellRender } from './calendarRenders/MiniCellRender';
 export const CalendarMini = () => {
 	const [open, setOpen] = useState(false);
 
-	const [sortBy] = useOutletContext();
-	const { isLoading, sortedList } = useSortedList(sortBy);
+	const { isLoading, sortedList } = useSortedList('');
 	const { eventsMap } = createCalendarList(sortedList);
 
 	const handleOpenChange = (newOpen) => {

@@ -17,16 +17,14 @@ import dayjs from 'dayjs';
 import customParseFormat from 'dayjs/plugin/customParseFormat';
 import { editList } from '../redux/slices/todosSlice';
 import { useDispatch, useSelector } from 'react-redux';
-import { calculateDeadlineStatus } from '../utils/calculateDeadlineStatus';
+import { selectCardById } from '../utils/getiItemById';
 const dateFormat = 'YYYY-MM-DD';
 dayjs.extend(customParseFormat);
 
 export default function EditCard({ activeId, open, onClose }) {
 	const dispatch = useDispatch();
 
-	const card = useSelector((state) =>
-		state.todos.list.find((item) => item._id === activeId),
-	);
+	const card = useSelector((state) => selectCardById(state, activeId));
 
 	const handleFormSubmit = (value) => {
 		value.deadline = value.deadline.format(dateFormat);

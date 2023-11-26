@@ -1,5 +1,5 @@
 .card {
-	width: 260px;
+	width: 100%;
 	background: #fff;
 	border: 1px solid #0000001a;
 	border-radius: 8px;
@@ -8,6 +8,12 @@
 	padding: 12px;
 	border-bottom: 'none';
 	font-family: 'AROneSans';
+
+	@media (max-width:48em) {
+		&__date {
+
+		}
+	}
 
 	&:hover {
 		.icon {
@@ -43,12 +49,16 @@
 	&__content {
 		display: flex;
 		flex-direction: column;
-		gap: 0.4rem;
+		gap: 4px;
 	}
 
 	&__title {
-		font-size: 2.5rem;
-		margin-bottom: 1rem;
+		font-size: 25px;
+		margin-bottom: 10px;
+		white-space: nowrap; /* Текст не переносится */
+		overflow: hidden; /* Обрезаем всё за пределами блока */
+		text-overflow: ellipsis; /* Показываем точки */
+		width: 90%;
 	}
 
 	&__head {
@@ -100,14 +110,14 @@
 	}
 
 	&__date {
-		font-size: 1.3rem;
+		font-size: 13px;
 		color: #00000080;
 	}
 
 	&__subtitle {
 		color: $gray;
-		margin-bottom: 1rem;
-		font-size: 1.3rem;
+		margin-bottom: 10px;
+		font-size: 13px;
 		font-weight: 500;
 	}
 
@@ -144,6 +154,10 @@
 				color: #5282ff;
 			}
 		}
+	}
+
+	@media (max-width:48em) {
+		width: 100%;
 	}
 }
 
