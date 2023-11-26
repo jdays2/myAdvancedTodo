@@ -21,6 +21,12 @@
 	&__deadline-tag {
 		width: 70px;
 		text-align: center;
+
+		@media screen {
+			@media (max-width:48em) {
+				width: 75px;
+			}
+		}
 	}
 
 	&__status-checker {
