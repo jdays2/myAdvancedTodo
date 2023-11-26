@@ -3,7 +3,7 @@ import React from 'react';
 import { createBrowserRouter } from 'react-router-dom';
 import Home from './pages/Home';
 import NavBars from './components/NavBars';
-import { Calender } from './components/Calender';
+import { CalendarBig } from './components/Calendar';
 import { TableBlock } from './components/Table';
 import { Board } from './components/Board';
 import { NotFound } from './pages/NotFound';
@@ -19,7 +19,7 @@ const router = createBrowserRouter([
 				children: [
 					{
 						path: '',
-						element: <Calender />,
+						element: <CalendarBig />,
 					},
 					{ path: 'board/:date', element: <Board /> },
 					{ path: 'table', element: <TableBlock /> },

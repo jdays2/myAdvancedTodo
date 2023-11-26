@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 const useTitle = (title, dependencies = []) => {
 	useEffect(() => {
 		if (title) {
-			document.title = `Senamo Todo | ${title}`;
+			document.title = `Todo | ${title}`;
 		}
 	}, [title, ...dependencies]);
 };

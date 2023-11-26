@@ -9,7 +9,7 @@ import { createCalendarList } from '../utils/createCalendarList';
 import useTitle from '../hooks/useTitle';
 const { Title } = Typography;
 
-export const Calender = () => {
+export const CalendarBig = () => {
 	const [sortBy] = useOutletContext();
 	const [date, setDate] = useState(monthTransformer(new Date()));
 	const { isLoading, sortedList } = useSortedList(sortBy);

@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useSortedList } from '../hooks/useSortedList';
-import { useOutletContext } from 'react-router-dom';
 
 import { Spin, Typography, Table, Space, Tooltip } from 'antd';
 import { RiQuestionFill } from 'react-icons/ri';
@@ -53,10 +52,10 @@ export const TableBlock = () => {
 			{sortedList && (
 				<Table
 					dataSource={sortedList}
-					size="medium">
+					size="middle">
 					<Column
 						align="left"
-						width="190px"
+						width="250px"
 						title="Title"
 						dataIndex="title"
 						key="firstName"
@@ -125,6 +124,7 @@ export const TableBlock = () => {
 						title="Body"
 						dataIndex="body"
 						key="body"
+						responsive={['xl']}
 					/>
 					<Column
 						title="Type"
@@ -136,6 +136,7 @@ export const TableBlock = () => {
 						]}
 						onFilter={(value, record) => record.type === value}
 						render={(type) => <TableType type={type} />}
+						responsive={['xl']}
 					/>
 					<Column
 						title="Priority"
@@ -148,6 +149,7 @@ export const TableBlock = () => {
 						]}
 						onFilter={(value, record) => record.priority === value}
 						render={(priority) => <TablePriority priority={priority} />}
+						responsive={['xl']}
 					/>
 					<Column
 						width="60px"

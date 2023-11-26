@@ -19,6 +19,7 @@
 		&--empty {
 			opacity: 0.2;
 			cursor: default;
+			pointer-events: none !important;
 		}
 	}
 
@@ -40,6 +41,38 @@
 		}
 	}
 
+	&__cell {
+		@media (max-width: 1120px) {
+			display: none;
+		}
+
+		&--untouch {
+			opacity: 0.2;
+			cursor: default;
+			pointer-events: none !important;
+		}
+
+		&--mob {
+			display: none;
+			height: 100%;
+			width: 100%;
+			@media (max-width: 1120px) {
+				display: flex;
+			}
+			.ant-tag {
+				display: flex;
+				height: 100%;
+				width: 100%;
+
+				text-align: center;
+				justify-content: center;
+				align-items: center;
+				font-size: 24px;
+				font-weight: 600;
+			}
+		}
+	}
+
 	&__month-title {
 		position: absolute;
 		left: 0;
@@ -49,6 +82,9 @@
 	&__mini {
 		width: 400px;
 		position: relative;
+		@media (max-width:48em) {
+			width: 600px;
+		}
 	}
 
 	&__tag {

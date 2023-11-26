@@ -4,6 +4,7 @@ import { Space, Select, Drawer, Row, Col, Button } from 'antd';
 import { editList, setActiveTodoId } from '../redux/slices/todosSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectStatusItems } from '../utils/selectFields';
+import { selectCardById } from '../utils/getiItemById';
 
 export default function DetailsCard({
 	activeId,
@@ -12,9 +13,8 @@ export default function DetailsCard({
 	showEdit,
 }) {
 	const dispatch = useDispatch();
-	const card = useSelector((state) =>
-		state.todos.list.find((item) => item._id === activeId),
-	);
+
+	const card = useSelector((state) => selectCardById(state, activeId));
 
 	const editStatus = (value) => {
 		const updatedCard = { ...card, status: value };

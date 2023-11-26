@@ -116,7 +116,7 @@ export default function TodoCard({ card }) {
 							/>
 
 							<Button
-								type="link"
+								type='dashed'
 								className="card__more-link"
 								onClick={() => {
 									setActiveTodoIdHandler(card._id);

@@ -101,16 +101,6 @@ export const todosSlice = createSlice({
 	},
 });
 
-export const selectedByStatus = createSelector(
-	(state) => state.todos.list,
-	(list) => {
-		const active = list.filter((todo) => todo.status === 'active');
-		const resolved = list.filter((todo) => todo.status === 'resolved');
-
-		return { active, resolved };
-	},
-);
-
 export const { resetCreating, resetEditing, setActiveTodoId } =
 	todosSlice.actions;
 

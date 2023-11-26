@@ -12,7 +12,7 @@
 	margin-bottom: 3rem;
 	margin-top: 10px;
 	padding: 30px;
-	
+
 	&::-webkit-scrollbar {
 		height: 6px;
 		width: 6px;
@@ -35,5 +35,10 @@
 
 	&::-webkit-scrollbar-thumb:hover {
 		background-color: #5b9de9;
+	}
+
+	@media (max-width: 960px) {
+		padding: 0;
+		padding-right: 10px;
 	}
 }
