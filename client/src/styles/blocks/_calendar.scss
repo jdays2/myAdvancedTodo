@@ -52,8 +52,6 @@
 			pointer-events: none !important;
 		}
 
-		
-
 		&--mob {
 			display: none;
 			height: 40px;
@@ -72,7 +70,7 @@
 				font-size: 24px;
 				font-weight: 600;
 				-webkit-margin-end: 0;
-				        margin-inline-end: 0;
+				margin-inline-end: 0;
 			}
 		}
 	}
@@ -83,11 +81,17 @@
 		top: 80px;
 	}
 
+	&__mini-popover {
+		.ant-popover-content {
+			margin-left: 10px !important;
+		}
+	}
+
 	&__mini {
 		width: 400px;
 		position: relative;
-		@media (max-width:48em) {
-			width: 600px;
+		@media (max-width: 48em) {
+			width: 330px;
 		}
 	}
 
@@ -99,6 +103,34 @@
 		-webkit-margin-end: 0;
 		margin-inline-end: 0;
 		justify-content: center;
+	}
+
+	@media (max-width: 48em) {
+		.ant-picker-calendar-date-content {
+			padding-bottom: 6px !important;
+			height: -webkit-fit-content;
+			height: -moz-fit-content;
+			height: -webkit-fit-content;
+			height: -moz-fit-content;
+			height: -webkit-fit-content;
+			height: -moz-fit-content;
+			height: fit-content !important;
+			padding: 2px !important;
+			padding-bottom: 10px !important;
+			margin: 0;
+		}
+		.ant-picker-calendar-mode-switch {
+			display: none;
+		}
+		.ant-picker-calendar-date {
+			height: -webkit-fit-content;
+			height: -moz-fit-content;
+			height: -webkit-fit-content;
+			height: -moz-fit-content;
+			height: fit-content !important;
+			padding: 2px !important;
+			margin: 0 !important;
+		}
 	}
 }
 
@@ -120,23 +152,4 @@
 			}
 		}
 	}
-}
-.ant-picker-calendar-date-content {
-	padding-bottom: 6px !important;
-	height: -webkit-fit-content !important;
-	height: -moz-fit-content !important;
-	height: fit-content !important;
-	padding: 2px;
-	padding-bottom: 10px !important;
-	margin: 0 !important;
-}
-.ant-picker-calendar-mode-switch {
-	display: none !important;
-}
-.ant-picker-calendar-date {
-	height: -webkit-fit-content;
-	height: -moz-fit-content;
-	height: fit-content !important;
-	padding: 0 !important;
-	margin: 0;
 }

@@ -19,6 +19,12 @@ export const CalendarMini = () => {
 	return (
 		<>
 			<Popover
+				
+				placement="bottomRight"
+				trigger="click"
+				open={open}
+				onOpenChange={handleOpenChange}
+				className='calendar__mini-popover'
 				content={
 					<Calendar
 						className="calendar__mini"
@@ -30,11 +36,7 @@ export const CalendarMini = () => {
 							/>
 						)}
 					/>
-				}
-				placement="bottomRight"
-				trigger="click"
-				open={open}
-				onOpenChange={handleOpenChange}>
+				}>
 				<Button className="button__calendar">
 					<CiCalendar className="icon__calendar" />
 				</Button>
