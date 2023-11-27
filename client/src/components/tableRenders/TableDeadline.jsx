@@ -15,7 +15,8 @@ export const TableDeadline = ({ record }) => {
 	return (
 		<Flex
 			align="center"
-			diraction="column">
+			diraction="column"
+			className="table__deadline-tag-box">
 			<Tag
 				className="table__deadline-tag"
 				color={isOkey}

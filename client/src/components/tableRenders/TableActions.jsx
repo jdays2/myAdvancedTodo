@@ -23,21 +23,21 @@ export const TableActions = ({ id }) => {
 	};
 
 	return (
-		<Space size="middle">
+		<Space size="small">
+			<Button
+				type="default"
+				onClick={() => {
+					setModalActive(id, 'details', 'true');
+				}}>
+				Open
+			</Button>
+
 			<Button
 				type="default"
 				onClick={() => {
 					setModalActive(id, 'edit', 'true');
 				}}>
 				Edit
-			</Button>
-
-			<Button 
-				type='default'
-				onClick={() => {
-					setModalActive(id, 'details', 'true');
-				}}>
-				Open
 			</Button>
 
 			<Popconfirm

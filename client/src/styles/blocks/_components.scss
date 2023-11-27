@@ -30,17 +30,51 @@
 	}
 }
 
+@-webkit-keyframes scrollMovement {
+	0% {
+		transform: translateX(0px);
+	}
+
+	90% {
+		transform: translateX(-60px);
+		color: #71aaeb;
+	}
+
+	100% {
+		transform: translateX(0px);
+	}
+}
+
+@keyframes scrollMovement {
+	0% {
+		transform: translateX(0px);
+	}
+
+	90% {
+		transform: translateX(-60px);
+		color: #71aaeb;
+	}
+
+	100% {
+		transform: translateX(0px);
+	}
+}
+
 .spinner {
 	position: absolute;
 	top: 30%;
 	left: 50%;
 	transform: translate(-50%, -50%);
+	z-index: 200;
 }
 
 .icon {
 	opacity: 0.7;
 	width: 20px;
 	height: 20px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 
 	&__back {
 		width: 22px;
@@ -75,7 +109,6 @@
 	&__calendar {
 		width: 22px;
 		height: 100%;
-
 	}
 }
 
@@ -94,7 +127,6 @@
 
 		display: none;
 	}
-
 
 	&__calendar {
 		padding-left: 4px;

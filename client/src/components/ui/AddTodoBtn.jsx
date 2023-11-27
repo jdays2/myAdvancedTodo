@@ -2,7 +2,10 @@ import { CgAddR } from 'react-icons/cg';
 import React from 'react';
 import { Tooltip } from 'antd';
 import { useDispatch } from 'react-redux';
-import { toggleModal } from '../../redux/slices/modalsSlice';
+import {
+	resetDateOfCreation,
+	toggleModal,
+} from '../../redux/slices/modalsSlice';
 
 export const AddTodoBtn = ({ date }) => {
 	const dispatch = useDispatch();
@@ -11,9 +14,9 @@ export const AddTodoBtn = ({ date }) => {
 		dispatch(toggleModal({ modal: strModal, status: strStatus, date }));
 	};
 
-	const addNewCardHandler = (e) => {
+	const addNewCardHandler = async (e) => {
 		e.preventDefault();
-		setModalActive('create', 'true', date);
+		await setModalActive('create', 'true', date);
 	};
 
 	return (

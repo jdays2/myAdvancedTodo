@@ -9,6 +9,7 @@ import {
 	Input,
 	DatePicker,
 	Button,
+	Flex,
 } from 'antd';
 
 import { addTodos } from '../redux/slices/todosSlice';
@@ -18,6 +19,8 @@ import { getDate } from '../utils/getDate';
 import dayjs from 'dayjs';
 import customParseFormat from 'dayjs/plugin/customParseFormat';
 import { resetDateOfCreation } from '../redux/slices/modalsSlice';
+import { PriorityIcon } from './ui/PriorityIcon';
+import { TypeIcon } from './ui/TypeIcon';
 const dateFormat = 'YYYY-MM-DD';
 dayjs.extend(customParseFormat);
 
@@ -27,11 +30,11 @@ export default function CreateCard({ open, onClose }) {
 	const dispatch = useDispatch();
 	const { dateOfCreation } = useSelector((state) => state.modals);
 
-	const handleFormSubmit = (value) => {
+	const handleFormSubmit = async (value) => {
 		value.created = dateOfCreation.length ? dateOfCreation : getDate();
 		value.deadline = value.deadline.format(dateFormat);
 		value.status = 'active';
-		dispatch(addTodos(value));
+		await dispatch(addTodos(value));
 		dispatch(resetDateOfCreation());
 		onClose();
 	};
@@ -74,9 +77,30 @@ export default function CreateCard({ open, onClose }) {
 								},
 							]}>
 							<Select placeholder="Please choose the type">
-								<Option value="critical">Critical</Option>
-								<Option value="urgent">Urgent</Option>
-								<Option value="standard">Standard</Option>
+								<Option value="critical">
+									<Flex
+										align="center"
+										gap={6}>
+										<PriorityIcon status={'critical'} />
+										<span>Critical</span>
+									</Flex>
+								</Option>
+								<Option value="urgent">
+									<Flex
+										align="center"
+										gap={6}>
+										<PriorityIcon status={'urgent'} />
+										<span>Urgent</span>
+									</Flex>
+								</Option>
+								<Option value="standard">
+									<Flex
+										align="center"
+										gap={6}>
+										<PriorityIcon status={'standard'} />
+										<span>Standard</span>
+									</Flex>
+								</Option>
 							</Select>
 						</Form.Item>
 					</Col>
@@ -93,8 +117,22 @@ export default function CreateCard({ open, onClose }) {
 								},
 							]}>
 							<Select placeholder="Please choose the type">
-								<Option value="Personal">Personal</Option>
-								<Option value="Work">Work</Option>
+								<Option value="Personal">
+									<Flex
+										align="center"
+										gap={6}>
+										<TypeIcon type={'Personal'} />
+										<span>Personal</span>
+									</Flex>
+								</Option>
+								<Option value="Work">
+									<Flex
+										align="center"
+										gap={6}>
+										<TypeIcon type={'Work'} />
+										<span>Work</span>
+									</Flex>
+								</Option>
 							</Select>
 						</Form.Item>
 					</Col>
@@ -126,6 +164,7 @@ export default function CreateCard({ open, onClose }) {
 								{
 									required: true,
 									message: 'Required field',
+									min:10
 								},
 							]}>
 							<TextArea

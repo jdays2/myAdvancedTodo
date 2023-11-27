@@ -31,8 +31,8 @@ export const CellRender = ({ value, eventsMap }) => {
 					to={`board/${date}`}
 					className={calCellClass}>
 					{events.map((event, index) => {
-						const rest = events.length - 2;
-						if (index <= 1) {
+						const rest = events.length - 1;
+						if (index <= 0) {
 							return (
 								<div
 									key={index}
@@ -41,7 +41,7 @@ export const CellRender = ({ value, eventsMap }) => {
 									<strong> {event.title}</strong>
 								</div>
 							);
-						} else if (index === 2 && events.length >= 3) {
+						} else if (index === 1 && events.length >= 2) {
 							return (
 								<div
 									key={index}

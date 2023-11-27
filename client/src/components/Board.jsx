@@ -51,7 +51,7 @@ export const Board = () => {
 							? sortedList.map((card) => {
 									return (
 										<Col
-											xl={Math.floor(24 / Math.min(sortedList.length, 4))}
+											xl={6}
 											lg={12}
 											md={12}
 											sm={24}
