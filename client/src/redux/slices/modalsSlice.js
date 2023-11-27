@@ -49,6 +49,7 @@ const modalsSlice = createSlice({
 		},
 		resetDateOfCreation: (state) => {
 			state.dateOfCreation = '';
+			console.log(state.dateOfCreation)
 		},
 	},
 });

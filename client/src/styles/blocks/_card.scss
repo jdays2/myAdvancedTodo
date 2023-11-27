@@ -9,9 +9,8 @@
 	border-bottom: 'none';
 	font-family: 'AROneSans';
 
-	@media (max-width:48em) {
+	@media (max-width: 48em) {
 		&__date {
-
 		}
 	}
 
@@ -37,12 +36,18 @@
 	&--expired {
 		border-color: #ff5958;
 
-		@media (hover:hover) {
-			&:hover {
-				border-color: #ff3737 !important;
-				border-width: 1px;
-				box-shadow: 0 1px 2px -2px #ff595840, 0 3px 6px 0 #ff595840, 0 5px 12px 4px #ff595840 !important;
-			}
+		&:active {
+			border-color: #ff3737 !important;
+			border-width: 1px;
+			box-shadow: 0 1px 2px -2px #ff595840, 0 3px 6px 0 #ff595840,
+				0 5px 12px 4px #ff595840 !important;
+		}
+
+		&:hover {
+			border-color: #ff3737 !important;
+			border-width: 1px;
+			box-shadow: 0 1px 2px -2px #ff595840, 0 3px 6px 0 #ff595840,
+				0 5px 12px 4px #ff595840 !important;
 		}
 	}
 
@@ -126,7 +131,7 @@
 		font-family: 'AROneSans';
 		width: 110px;
 
-	font-weight: 600;
+		font-weight: 600;
 		height: -webkit-fit-content;
 
 		height: -moz-fit-content;
@@ -157,7 +162,7 @@
 		}
 	}
 
-	@media (max-width:48em) {
+	@media (max-width: 48em) {
 		width: 100%;
 	}
 }

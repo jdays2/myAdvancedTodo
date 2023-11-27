@@ -93,6 +93,12 @@
 		@media (max-width: 48em) {
 			width: 330px;
 		}
+
+		.ant-picker-cell-selected {
+			background-color: #aed4ff40;
+			border-radius: 8px !important;
+			overflow: hidden;
+		}
 	}
 
 	&__tag {
@@ -103,6 +109,10 @@
 		-webkit-margin-end: 0;
 		margin-inline-end: 0;
 		justify-content: center;
+	}
+
+	.ant-picker-calendar-date-content {
+		height: 63.5px !important;
 	}
 
 	@media (max-width: 48em) {

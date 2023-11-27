@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { useOutletContext } from 'react-router-dom';
 import { useSortedList } from '../hooks/useSortedList';
 import { RiQuestionFill } from 'react-icons/ri';
+import { CgScrollH } from 'react-icons/cg';
 import { monthTransformer } from '../utils/monthTransformer';
 import { CellRender } from './calendarRenders/CellRender';
 import { createCalendarList } from '../utils/createCalendarList';
@@ -44,9 +45,10 @@ export const CalendarBig = () => {
 						className="calendar__month-title">
 						{date.month} {date.year}
 					</Title>
-
+					
 					<Calendar
 						mode="month"
+						border
 						cellRender={(value) => (
 							<CellRender
 								value={value}

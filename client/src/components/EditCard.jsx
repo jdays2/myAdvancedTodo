@@ -9,6 +9,7 @@ import {
 	Input,
 	DatePicker,
 	Button,
+	Flex,
 } from 'antd';
 
 const { TextArea } = Input;
@@ -18,6 +19,8 @@ import customParseFormat from 'dayjs/plugin/customParseFormat';
 import { editList } from '../redux/slices/todosSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectCardById } from '../utils/getiItemById';
+import { TypeIcon } from './ui/TypeIcon';
+import { PriorityIcon } from './ui/PriorityIcon';
 const dateFormat = 'YYYY-MM-DD';
 dayjs.extend(customParseFormat);
 
@@ -80,9 +83,30 @@ export default function EditCard({ activeId, open, onClose }) {
 								},
 							]}>
 							<Select placeholder="Please choose the type">
-								<Option value="critical">Critical</Option>
-								<Option value="urgent">Urgent</Option>
-								<Option value="standard">Standard</Option>
+								<Option value="critical">
+									<Flex
+										align="center"
+										gap={6}>
+										<PriorityIcon status={'critical'} />
+										<span>Critical</span>
+									</Flex>
+								</Option>
+								<Option value="urgent">
+									<Flex
+										align="center"
+										gap={6}>
+										<PriorityIcon status={'urgent'} />
+										<span>Urgent</span>
+									</Flex>
+								</Option>
+								<Option value="standard">
+									<Flex
+										align="center"
+										gap={6}>
+										<PriorityIcon status={'standard'} />
+										<span>Standard</span>
+									</Flex>
+								</Option>
 							</Select>
 						</Form.Item>
 					</Col>
@@ -99,8 +123,22 @@ export default function EditCard({ activeId, open, onClose }) {
 								},
 							]}>
 							<Select placeholder="Please choose the type">
-								<Option value="Personal">Personal</Option>
-								<Option value="Work">Work</Option>
+								<Option value="Personal">
+									<Flex
+										align="center"
+										gap={6}>
+										<TypeIcon type={'Personal'} />
+										<span>Personal</span>
+									</Flex>
+								</Option>
+								<Option value="Work">
+									<Flex
+										align="center"
+										gap={6}>
+										<TypeIcon type={'Work'} />
+										<span>Work</span>
+									</Flex>
+								</Option>
 							</Select>
 						</Form.Item>
 					</Col>
