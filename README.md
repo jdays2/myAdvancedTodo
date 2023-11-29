@@ -1,7 +1,7 @@
 
 # Документация Todo React приложения с использованием Ant Design и mongoDB
 
-### Деплой вы можете посмотруть (тут)[https://test-senama-soft-jdays2.vercel.app/]
+### Деплой вы можете посмотруть [тут](https://test-senama-soft-jdays2.vercel.app/)
 
 ## Оглавление
 
