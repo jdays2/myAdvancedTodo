@@ -17,12 +17,7 @@ export default function Footer() {
 						className="footer__socials-link">
 						<GithubOutlined />
 					</a>
-					<a
-						href="https://www.linkedin.com/in/%D0%BC%D0%B0%D1%80%D0%BA-%D0%B3%D0%BE%D1%80%D1%89%D0%B0%D1%80%D0%B8%D0%BA-4a626a273/  "
-						target="_blank"
-						className="footer__socials-link">
-						<LinkedinOutlined />
-					</a>
+					
 				</nav>
 
 				<div className="footer__copyright">
@@ -30,7 +25,12 @@ export default function Footer() {
 					<span>completely unprotected</span>
 				</div>
 
-				<p className="footer__author">JDayS</p>
+				<a
+						href="https://www.linkedin.com/in/%D0%BC%D0%B0%D1%80%D0%BA-%D0%B3%D0%BE%D1%80%D1%89%D0%B0%D1%80%D0%B8%D0%BA-4a626a273/  "
+						target="_blank"
+						className="footer__socials-link">
+						<LinkedinOutlined />
+					</a>
 			</div>
 
 			<Notifications />
